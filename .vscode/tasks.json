@@ -7,6 +7,12 @@
             "label": "build notes",
             "type": "shell",
             "command": "latexmk -pdf -jobname=build/electromagnetics electromagnetics.tex",
+        },
+        {
+            "label": "copy build",
+            "type": "shell",
+            "command": "cp build/electromagnetics.pdf electromagnetics.pdf",
+            "dependsOn": "build notes",
             "group": {
                 "kind": "build",
                 "isDefault": true
