@@ -1,0 +1,30 @@
+\begin{tikzpicture}
+    [scale=4,
+    axis/.style={->,thick},
+    vector/.style={-stealth,very thick},
+    vector guide/.style={dashed,red,thick}]
+
+    \coordinate (O) at (0, 0);
+    \def\u{0.3}
+    \def\v{0.6}
+
+    % drawing axes
+    \draw[axis] (O) -- (1, 0) node[anchor=west]{$x$};
+    \draw[axis] (O) -- (0, 1) node[anchor=south]{$y$};
+
+    % drawing the vector's components
+    \draw[vector, blue] (O) -- (\v, 0) node[anchor=north]{$A_x\vec{a}_x$};
+    \draw[vector, blue] (O) -- (0, \v) node[anchor=east]{$A_y\vec{a}_x$};
+
+    % drawing unit vectors
+    \draw[vector, magenta] (O) -- (\u, 0) node[anchor=north]{$\vec{a}_x$};
+    \draw[vector, magenta] (O) -- (0, \u) node[anchor=east]{$\vec{a}_y$};
+
+    % drawing vector A
+    \draw[vector, red] (O) -- (\v, \v) node[anchor=south]{$\vec{A}$};
+
+    % drawing vector guides
+    \draw[vector guide] (\v, 0) -- (\v, \v);
+    \draw[vector guide] (0, \v) -- (\v, \v);
+
+\end{tikzpicture}
