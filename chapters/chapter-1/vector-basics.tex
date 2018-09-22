@@ -1,6 +1,17 @@
 \chapter{Vector Basics}
-    \section{Introduction}
-        \begin{figure}[H]
+    \section{Recommended Texts}
+        The following books are recommended for the course. The first one will be followed by the instructor.
+        \begin{enumerate}
+            \item Engineering Electromagnetics 8th Edition by John Buck \& William H. Hayt
+            \item Electromagnetics John D. Kraus
+            \item Introduction to Electrodynamics by David J. Griffiths
+            \item Classical Electrodynamics by John David Jackson
+        \end{enumerate}
+    \section{What is a Vector?}
+        From a mathematical standpoint a vector is an element of a vector space. From a physical point of view a vector is a quantity that requires a magnitude as well as a direction to be represented.
+    \section{Unit vectors in Rectangular Coordinate System}
+        In a Rectangular Coordinate System (RCS), a vector can be represented as a linear sum of three unit vectors, namely $\vec{a}_x$, $\vec{a}_y$ and $\vec{a}_z$. In case of two dimensions, $\vec{a}_z$ is not needed. This is also depicted in figure~\ref{fig:vectors}.
+        \begin{figure}
             \centering
             \subfloat[A vector in two dimensions]{
                 \input{chapters/chapter-1/diagrams/2d-vector}
@@ -11,3 +22,23 @@
             \caption{}
             \label{fig:vectors}
         \end{figure}
+    \section{Dot Product}
+        Suppose we have two vectors $\vec{A}$ and $\vec{B}$. $\vec{A}$ can be represented as:
+        $$\vec{A} = A_x\vec{a}_x + A_y\vec{a}_y + A_z\vec{a}_z$$
+        Similarly, $\vec{B}$ can be represented as:
+        $$\vec{B} = B_x\vec{a}_x + B_y\vec{a}_y + B_z\vec{a}_z$$
+        Their dot product, $\vec{A}\cdot \vec{B}$, which is a scalar quantity, is defined as:
+        $$\vec{A}\cdot \vec{B} = |\vec{A}||\vec{B}|\cos \theta$$
+        In case when $\theta$ becomes $90^{\circ}$ the dot product automatically reduces to zero. Thus one can easily conclude that the dot product of two perpendicular vectors shall always be zero. This makes expressing the dot product in terms of its components pretty straight forward.
+        $$\vec{A}\cdot \vec{B} = \left(A_x\vec{a}_x + A_y\vec{a}_y + A_z\vec{a}_z\right)\cdot \left(B_x\vec{a}_x + B_y\vec{a}_y + B_z\vec{a}_z\right)$$
+        \begin{equation}\label{eq:dotproduct}
+           \vec{A}\cdot \vec{B} = A_xB_x + A_yB_y + A_zB_z
+        \end{equation}
+        A vector can also be represented in the form of column vector as:
+        $$ \vec{A} = \begin{bmatrix}A_x \\A_y \\A_z\\ \end{bmatrix} \quad \vec{B} = \begin{bmatrix}B_x \\B_y \\B_z\\ \end{bmatrix} $$
+        In that case the dot product, also called inner product in this context, is defined as:
+        $$ \mathbf{A}^{T}\mathbf{B} $$
+        If the vectors $\vec{A}$ and $\vec{B}$ are of the order $n \times 1$ their inner product will have the order $ 1 \times \left(n \times n\right) \times 1 = 1 \times 1$. Thus the result will be a scalar quantity.
+        The opposite of the inner product is known as the outer product also called the cross product which we will get to in a later topic.
+        
+        
