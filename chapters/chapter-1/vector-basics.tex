@@ -48,4 +48,24 @@
             $$|\vec{A}||\vec{B}|\cos \theta \leq |\vec{A}||\vec{B}| $$
             This inequality changes to an equality when both vectors are collinear.
         
+        \subsection{The Triangle Inequality}
+            $$|\vec{A}| + |\vec{B}| \geq |\vec{A} + \vec{B}| $$
+            It's quite easy to see why that is the case in the case of two dimensions.
+            At this moment it should be useful to point out that:
+            $$|\vec{A}| = \sqrt{A_x^2 + A_y^2 + A_z^2}$$
+            $$|\vec{A}|^2 = \vec{A} \cdot \vec{A}$$
+            This shall be useful in proving the Parallelogram Equality.
         
+        \subsection{The Parallelogram Equality}
+            The equality states:
+            $$|\vec{A} + \vec{B}|^2 + |\vec{A} - \vec{B}|^2 = 2\left(|\vec{A}|^2+\vec{B}^2\right)$$
+            To prove it:
+            $$|\vec{A} + \vec{B}|^2 = \left(\vec{A}+\vec{B}\right)\cdot \left(\vec{A}+\vec{B}\right)$$
+            $$= \vec{A}\cdot \vec{A} + \vec{A}\cdot \vec{B} + \vec{B}\cdot \vec{A} + \vec{B}\cdot \vec{B}$$
+            $$= |\vec{A}|^2 -2\vec{A}\cdot \vec{B} + |\vec{B}|^2$$
+            Similarly:
+            $$|\vec{A} - \vec{B}|^2 = \left(\vec{A}-\vec{B}\right)\cdot \left(\vec{A}-\vec{B}\right)$$
+            $$= \vec{A}\cdot \vec{A} - \vec{A}\cdot \vec{B} - \vec{B}\cdot \vec{A} + \vec{B}\cdot \vec{B}$$
+            $$= |\vec{A}|^2 +2\vec{A}\cdot \vec{B} + |\vec{B}|^2$$
+            Thus:
+            $$|\vec{A} + \vec{B}|^2 + |\vec{A} - \vec{B}|^2 = 2|\vec{A}| + 2|\vec{B}| = 2\left(|\vec{A}| + |\vec{B}|\right)$$
