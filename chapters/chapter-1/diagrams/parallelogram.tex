@@ -1,0 +1,24 @@
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        [scale=4,
+        axis/.style={->,thick},
+        vector/.style={-stealth,very thick},
+        vector guide/.style={dashed,red,thick}]
+
+        % drawing both vectors and their angle's arc
+        \draw[vector, blue] (0, 0) -- (0.5, 0) node[anchor=north]{$\vec{A}$};
+        \draw[vector, red] (0, 0) -- (30: 0.5) node[anchor=south]{$\vec{B}$};
+        \draw[black] (0.1, 0) arc (0:30:0.1);
+        \draw (12: 0.2) node[anchor=east]{$\theta$};
+
+        % drawing the other lines 
+        \draw[black, very thick] (30: 0.5) -- ++(0.5, 0);
+        \draw[black, very thick] (0.5, 0) -- ++(30: 0.5);
+
+        % height of the parallelogram
+        \draw[dashed] (30:0.5) -- node[left]{$h$} ($(0,0)!(30:0.5)!(1,0)$);
+    \end{tikzpicture}
+    \caption{A parallelogram formed by two vectors $\vec{A}$ and $\vec{B}$}
+    \label{fig:parallelogram}
+\end{figure}

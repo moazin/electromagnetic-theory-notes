@@ -83,4 +83,64 @@
                 \item A third one I don't understand yet. Need to confirm this one.
                         $$Q = \iint\limits_{S}\vec{D}\cdot \vec{dS}$$
             \end{itemize}
-    
+    \section{Cross Product}
+        \subsection{The Definition}
+            The cross product of two vectors $\vec{A}$ and $\vec{B}$ is given by:
+            \begin{equation}\label{eq:crossproduct}
+                \vec{A}\times \vec{B} = |\vec{A}||\vec{B}|\sin\theta \vec{u}_N
+            \end{equation}
+            Where $\theta\in\left[0, \pi\right]$ and $\vec{u}_N$ is a vector given by the right hand rule where fingers should be curled from the direction of $\vec{A}$ to the direction of $\vec{B}$.
+            Since the direction of the cross product is dictated by the right hand rule we can already see that it is not a commutative operation. More accurately:
+            \begin{equation}\label{eq:commutativeincrossproduct}
+                \vec{A}\times\vec{B} = - (\vec{B}\times\vec{A})
+            \end{equation}
+            
+        \subsection{Geometric Significance}
+            \input{chapters/chapter-1/diagrams/parallelogram}
+            As you can see very clearly in figure~\ref{fig:parallelogram} that any two vectors $\vec{A}$ and $\vec{B}$ can uniquely identify a parallelogram. The area of any parallelogram is given by the formula:
+            \begin{equation}\label{eq:areaofparallelogram}
+            Area = (base)\times(height)
+            \end{equation}
+            In figure~\ref{fig:parallelogram} the base is the length of the vector $\vec{A}$ and the height is shown by the dotted line. But how do we figure out what $h$ really is? By applying trigonometry here we can find out that $h = |\vec{A}|\sin\theta$. Plugging in these values in equation~\ref{eq:areaofparallelogram} we get:
+            $$Area = (|\vec{B}|)(|\vec{A}|\sin\theta)$$
+            Ahah, this is exactly the same formula that is given by $\vec{A}\cdot\vec{B}$. Thus we can conclude that the area of the parallelogram formed by two vectors $\vec{A}$ and $\vec{B}$ is given by $\vec{A}\cdot\vec{B}$.
+            $$Area = \vec{A}\cdot\vec{B}$$
+        
+        \subsection{Calculating Cross Product}
+            Before we learn how to calculate the cross product of any two vectors in terms of the three basic unit vectors $\vec{a}_x$, $\vec{a}_y$ and $\vec{a}_z$ we should think about what will be the cross production of every possible combination of two of these three unit vectors. We know from equation~\ref{eq:crossproduct} that the cross product of two parallel vectors should be zero because $\sin 90^{\circ} = 0$. We also know that the magnitude of a unit vector is by definition one. Using these two facts, along with the right hand rule, we can very quickly see that:
+            $$\vec{a}_x\times\vec{a}_y=\vec{a}_z$$
+            $$\vec{a}_y\times\vec{a}_z=\vec{a}_x$$
+            $$\vec{a}_z\times\vec{a}_x=\vec{a}_y$$
+            Using equation~\ref{eq:commutativeincrossproduct} we can easily figure out the reverses of these combinations:
+            $$\vec{a}_y\times\vec{a}_x=-\vec{a}_z$$
+            $$\vec{a}_z\times\vec{a}_y=-\vec{a}_x$$
+            $$\vec{a}_x\times\vec{a}_z=-\vec{a}_y$$
+            Now suppose we have two vectors $\vec{A}$ and $\vec{B}$, we can express them as:
+            $$\vec{A} = A_x\vec{a}_x + A_y\vec{a}_y + A_z\vec{a}_z$$
+            $$\vec{B} = B_x\vec{a}_x + B_y\vec{a}_y + B_z\vec{a}_z$$
+            Their cross product can be written as:
+            $$\vec{A}\times\vec{B} = \left(A_x\vec{a}_x + A_y\vec{a}_y + A_z\vec{a}_z\right)\times\left(B_x\vec{a}_x + B_y\vec{a}_y + B_z\vec{a}_z\right)$$
+            Expanding this we get:
+            \begin{align*}
+            \vec{A}\times\vec{B} = A_xB_x(\vec{a}_x\times\vec{a}_x) + A_xB_y(\vec{a}_x\times\vec{a}_y) + A_xB_z(\vec{a}_x\times\vec{a}_z)\\ + A_yB_x(\vec{a}_y\times\vec{a}_x) + A_yB_y(\vec{a}_y\times\vec{a}_y) + A_yB_z(\vec{a}_y\times\vec{a}_z)\\ + A_zB_x(\vec{a}_z\times\vec{a}_x) + A_zB_y(\vec{a}_z\times\vec{a}_y) + A_zB_z(\vec{a}_z\times\vec{a}_z)
+            \end{align*}
+            Firstly, we can cancel those cross products which are between collinear vectors, as we know that's going to be zero.
+            \begin{align*}
+            \vec{A}\times\vec{B} = A_xB_y(\vec{a}_x\times\vec{a}_y) + A_xB_z(\vec{a}_x\times\vec{a}_z)\\ + A_yB_x(\vec{a}_y\times\vec{a}_x)  + A_yB_z(\vec{a}_y\times\vec{a}_z)\\ + A_zB_x(\vec{a}_z\times\vec{a}_x) + A_zB_y(\vec{a}_z\times\vec{a}_y) 
+            \end{align*}
+            Now, just utilizing the crossproducts of all possible combinations between unit vectors that we just derived a while ago, we can simplify this even further:
+            \begin{align*}
+            \vec{A}\times\vec{B} = A_xB_y(\vec{a}_z) + A_xB_z(-\vec{a}_y)\\ + A_yB_x(-\vec{a}_z)  + A_yB_z(\vec{a}_x)\\ + A_zB_x(\vec{a}_y) + A_zB_y(-\vec{a}_x) 
+            \end{align*}
+            Grouping these terms by unit vectors we get:
+            \begin{equation}
+                \vec{A}\times\vec{B} = \vec{a}_x(A_yB_z-A_zB_y) + \vec{a}_y(A_zB_x-A_xB_z) + \vec{a}_z(A_xB_y-A_yB_x)
+            \end{equation}
+            We can write this in an elegant way as a determinant:
+            \begin{equation}
+                \vec{A}\times\vec{B} = \begin{vmatrix}
+                    \vec{a}_x & \vec{a}_y & \vec{a}_z \\
+                    A_x & A_y & A_z\\
+                    B_x & B_y & B_z
+                \end{vmatrix}
+            \end{equation}
