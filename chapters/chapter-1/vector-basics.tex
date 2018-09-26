@@ -28,7 +28,9 @@
         Similarly, $\vec{B}$ can be represented as:
         $$\vec{B} = B_x\vec{a}_x + B_y\vec{a}_y + B_z\vec{a}_z$$
         Their dot product, $\vec{A}\cdot \vec{B}$, which is a scalar quantity, is defined as:
-        $$\vec{A}\cdot \vec{B} = |\vec{A}||\vec{B}|\cos \theta$$
+        \begin{equation}\label{eq:dotproductfirst}
+            \vec{A}\cdot \vec{B} = |\vec{A}||\vec{B}|\cos \theta
+        \end{equation}
         In case when $\theta$ becomes $90^{\circ}$ the dot product automatically reduces to zero. Thus one can easily conclude that the dot product of two perpendicular vectors shall always be zero. This makes expressing the dot product in terms of its components pretty straight forward.
         $$\vec{A}\cdot \vec{B} = \left(A_x\vec{a}_x + A_y\vec{a}_y + A_z\vec{a}_z\right)\cdot \left(B_x\vec{a}_x + B_y\vec{a}_y + B_z\vec{a}_z\right)$$
         \begin{equation}\label{eq:dotproduct}
@@ -69,6 +71,17 @@
             $$= |\vec{A}|^2 +2\vec{A}\cdot \vec{B} + |\vec{B}|^2$$
             Thus:
             $$|\vec{A} + \vec{B}|^2 + |\vec{A} - \vec{B}|^2 = 2|\vec{A}| + 2|\vec{B}| = 2\left(|\vec{A}| + |\vec{B}|\right)$$
+        
+        \subsection{Scalar component of one vector in the direction of another}
+            \input{chapters/chapter-1/diagrams/projectiontwovectors}
+            Dot product can be really handy when we want to figure out the projection of one vector onto the direction of another vector. Refer to figure\ref{fig:projectiontwovectors}. The line $\bar{OP}$ is the projection of vector $\vec{B}$ in the direction of $\vec{A}$. Similarly, $\bar{OQ}$ is the projection of vector $\vec{A}$ in the direction of vector $\vec{B}$. Since the line from the tip of vector $\vec{B}$ to $P$ is perpendicular to the vector $\vec{A}$ and the line from the tip of $\vec{A}$ to point $Q$ is perpendicular to vector $\vec{B}$. We can apply trigonometry to find out these projections. 
+
+            \noindent Let $B_A$ denote the projection of vector $\vec{B}$ in the direction of $\vec{A}$ and let $A_B$ denote the projection of $\vec{A}$ in the direction of $\vec{B}$. Applying trigonometry we get:
+            $$B_A = |\vec{B}|\cos\theta$$
+            $$A_B = |\vec{A}|\sin\theta$$
+            Recalling the definition of a dot product from equation~\ref{eq:dotproductfirst} we can see:
+            $$B_A = \frac{\vec{A}\cdot\vec{B}}{|\vec{A}|} = \vec{u}_A\cdot\vec{B}$$
+            $$A_B = \frac{\vec{A}\cdot\vec{B}}{|\vec{B}|} = \vec{u}_B\cdot\vec{A}$$
         
         \subsection{Some practical applications}
             Some common places in Physics where you will find the dot product being applied are:
@@ -144,3 +157,28 @@
                     B_x & B_y & B_z
                 \end{vmatrix}
             \end{equation}
+        \subsection{Properties}
+            Cross Product does not follow the commutative law as we have already seen. However, it does follow distributive law:
+            $$\vec{A}\times\left(\vec{B}+\vec{C}\right) = \vec{A}\times\vec{B} + \vec{A}\times\vec{C}$$
+        \subsection{Practical Applications}
+            \begin{enumerate}
+                \item Torque: $$\vec{\tau}=\vec{r}\times\vec{F}$$
+                \item Angular Momentum: $$\vec{L}=\vec{r}\times\vec{\rho}$$ $$\vec{\rho}=m\vec{v}$$
+                \item Force on a moving conductor: $$\vec{F} = I\vec{L}\times\vec{B}$$
+                \item Force on a moving charge: $$\vec{F} = q\vec{v}\times\vec{B}$$
+                \item Lorrentz Force Formula: $$\vec{F}=q\left(\vec{E}+\vec{v}\times\vec{B}\right)$$
+            \end{enumerate}
+    \section{Curl and Divergence}
+        Before we discuss Curl and Divergence, we define the $\nabla$ operator as:
+        $$\nabla = \frac{\partial}{\partial x}\vec{a}_x + \frac{\partial}{\partial y}\vec{a}_y + \frac{\partial}{\partial z}\vec{a}_z$$
+        \subsection{Divergence}
+            Divergence of a vector field $\vec{F}$ is defined as:
+            $$div(\vec{F})=\nabla\cdot\vec{F}$$
+            $$div(\vec{F}) = \left(\frac{\partial}{\partial x}\vec{a}_x + \frac{\partial}{\partial y}\vec{a}_y + \frac{\partial}{\partial z}\vec{a}_z\right)\cdot\left(\vec{F}_x\vec{a}_x + \vec{F}_y\vec{a}_y + \vec{F}_z\vec{a}_z\right)$$
+            Solving that we get:
+            \begin{equation}\label{eq:divergenceequation}
+                div(\vec{F}) = \frac{\partial F_x}{\partial x} + \frac{\partial F_y}{\partial y} + \frac{\partial F_z}{\partial z}
+            \end{equation}
+            It would be good here to mention here that one of the Maxwell's equation uses divergence:
+            $$\nabla\cdot \vec{B} = 0$$
+            Another interpretation of this equation is ``No magnetic monopoles exist''.

@@ -1,0 +1,27 @@
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        [scale=6,
+        axis/.style={->,thick},
+        vector/.style={-stealth,very thick},
+        vector guide/.style={dashed,red,thick}]
+
+        \def\ang{45}
+
+        \draw (0, 0) node[left]{$O$};
+        % drawing both vectors and their angle's arc
+        \draw[vector, blue] (0, 0) -- (0.5, 0) node[anchor=north]{$\vec{A}$};
+        \draw[vector, red] (0, 0) -- (\ang: 0.5) node[anchor=south]{$\vec{B}$};
+        \draw[black] (0.1, 0) arc (0:\ang:0.1);
+        \draw (30: 0.1) node[right]{$\theta$};
+
+        % dropping a perpendicular from B's tip to A
+        \draw[dashed] (\ang: 0.5) -- ($(0,0)!(\ang: 0.5)!(1, 0)$) node[below]{$P$};
+
+        % dropping a perpendicular from A's tip to B
+        \draw[dashed] (0.5, 0) -- ($(0,0)!(0.5, 0)!(\ang: 0.5)$) node[left]{$Q$};
+
+    \end{tikzpicture}
+    \caption{Projections of two vectors $\vec{A}$ and $\vec{B}$ on each other.}
+    \label{fig:projectiontwovectors}
+\end{figure}
