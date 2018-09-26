@@ -194,6 +194,18 @@
             Exchanging two rows of a determinant two times doesn't really doesn't affect it, right? That fact, leads to the equality:
             $$\vec{B}\cdot\left(\vec{C}\times\vec{A}\right) = \vec{C}\cdot\left(\vec{A}\times\vec{B}\right)$$
         \subsection{Applications}
+            \input{chapters/chapter-1/diagrams/parallelopiped}
+            The area of a parallelopiped can be calculated by the following formula:
+            $$Area = (\textrm{area of base face})\times(h)$$
+            Where $h$ is the perpendicular distance between the base face and the top face.
+            In figure~\ref{fig:parallelopiped} we can see that a parallelopiped is uniquely identified by three vectors $\vec{A}$, $\vec{B}$ and $\vec{C}$. The area of the base face, as we already know, is given by the magnitude of the cross product of $\vec{A}$ and $\vec{B}$. The vector $\vec{A}\times\vec{B}$ is also shown in figure~\ref{fig:parallelopiped}. The magnitude of this vector gives us the area and direction of this vector is perpendicular to the plane formed by $\vec{A}$ and $\vec{B}$. Now we need to figure out the perpendicular distance between the base face and the top face. That distance is given by $|\vec{C}|\cos\theta$. If we take the dot product of $\vec{A}\times\vec{B}$ and $\vec{C}$ we get:
+            \begin{align*}
+                \vec{C}\cdot\left(\vec{A}\times\vec{B}\right) = \left(|\vec{C}|\cos\theta\right)\left(|\vec{A}\times\vec{B}|\right)\\ 
+                = \left(|\vec{C}|\cos\theta\right)\left(\textrm{area of base face}\right)\\
+                = \left(\textrm{h}\right)\left(\textrm{area of base face}\right)\\
+                = \textrm{Volume of the parallelopiped}
+            \end{align*}
+            Hence we have proven that the scalar product of three vectors gives us the volume of the parallelopiped formed by them.
 
     \section{Curl and Divergence}
         Before we discuss Curl and Divergence, we define the $\nabla$ operator as:
