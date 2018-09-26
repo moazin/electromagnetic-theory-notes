@@ -168,6 +168,33 @@
                 \item Force on a moving charge: $$\vec{F} = q\vec{v}\times\vec{B}$$
                 \item Lorrentz Force Formula: $$\vec{F}=q\left(\vec{E}+\vec{v}\times\vec{B}\right)$$
             \end{enumerate}
+    \section{Scalar Triple Product}
+        \subsection{Definition}
+            The Scalar Triple Product of three vectors $\vec{A}$, $\vec{B}$ and $\vec{C}$ is defined as:
+            $$\vec{A}\cdot\left(\vec{B}\times\vec{C}\right)$$
+            We already know that:
+            \begin{equation}\label{eq:BintoC}
+                \vec{B}\times\vec{C} = \begin{vmatrix}\vec{a}_x & \vec{a}_y & \vec{a}_z \\ B_x & B_y & B_z \\ C_x & C_y & C_z \end{vmatrix}
+            \end{equation}
+            Vector $\vec{A}$ is defined as:
+            $$\vec{A} = A_x\vec{a}_x + A_y\vec{a}_y + A_z\vec{a}_z$$
+            We also know from equation~\ref{eq:dotproduct} that when the dot product of two vectors is taken, their respective components are mulitplied together, the unit vectors go away and the resultant values are added, right?
+            Let $\vec{V}$ represent $\vec{B}\times\vec{C}$. So, $\vec{A}\cdot\vec{V}$ is:
+            $$\vec{A}\cdot\vec{V} = A_xV_x + A_yV_y + A_zV_z$$
+            From equation~\ref{eq:BintoC} we can see that:
+            $$V_x = \begin{vmatrix}B_y & B_z \\ C_y & C_z\end{vmatrix}$$
+            $$V_y = -\begin{vmatrix}B_x & B_z \\ C_x & C_z\end{vmatrix}$$
+            $$V_z = \begin{vmatrix}B_x & B_y \\ C_x & C_y\end{vmatrix}$$
+            Putting these results back we get:
+            $$\vec{A}\cdot\vec{V} = A_x\begin{vmatrix}B_y & B_z \\ C_y & C_z\end{vmatrix} + -A_y\begin{vmatrix}B_x & B_z \\ C_x & C_z\end{vmatrix} + \begin{vmatrix}B_x & B_y \\ C_x & C_y\end{vmatrix}$$ 
+            Ahah, we have seen something similar while expanding determinants haven't we?
+            \begin{equation}\label{eq:scalartriple}
+            \vec{A}\cdot\left(\vec{B}\times\vec{C}\right) = \begin{vmatrix}A_x & A_y & A_z\\ B_x & B_y & B_z\\ C_x & C_y & C_z\end{vmatrix}
+            \end{equation}
+            Exchanging two rows of a determinant two times doesn't really doesn't affect it, right? That fact, leads to the equality:
+            $$\vec{B}\cdot\left(\vec{C}\times\vec{A}\right) = \vec{C}\cdot\left(\vec{A}\times\vec{B}\right)$$
+        \subsection{Applications}
+
     \section{Curl and Divergence}
         Before we discuss Curl and Divergence, we define the $\nabla$ operator as:
         $$\nabla = \frac{\partial}{\partial x}\vec{a}_x + \frac{\partial}{\partial y}\vec{a}_y + \frac{\partial}{\partial z}\vec{a}_z$$
