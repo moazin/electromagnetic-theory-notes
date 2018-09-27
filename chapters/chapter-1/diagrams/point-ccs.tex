@@ -1,0 +1,39 @@
+% sets up the perspective from which we are looking at the picture {theta}{phi}
+% {theta} defines the rotion by x axis while {phi} defines the rotation by z axis
+\tdplotsetmaincoords{60}{120}
+\begin{tikzpicture}
+    [scale=4,
+    tdplot_main_coords,
+    axis/.style={->,black,thick},
+    vector/.style={-stealth,very thick},
+    vector guide/.style={dashed,red,thick}]
+    
+
+    \def\ax{0.5}
+    \def\ay{0.5}
+    \def\az{0.5}
+
+    \def\rholen{ {sqrt(\ax^2+\ay^2)} }
+    \coordinate (O) at (0, 0, 0);
+    \coordinate (P) at (\ax, \ay, \az);
+
+    % this should serve as our unit vector
+    \draw[axis] (0, 0, 0) -- (1, 0, 0) node[anchor=north east]{$x$};
+    \draw[axis] (0, 0, 0) -- (0, 1, 0) node[anchor=north west]{$y$};
+    \draw[axis] (0, 0, 0) -- (0, 0, 1) node[anchor=south]{$z$};
+
+    \draw[blue] (O) -- node[right]{$\rho$} (\ax, \ay, 0);
+    \draw[dashed] (\rholen, 0, 0) arc (0:90:\rholen);
+    \draw[red] (P) -- node[right]{$z$} (\ay, \ay, 0);
+
+    \fill[red] (P) circle[radius=0.5pt];
+
+    \tdplotdefinepoints(0,0,0)(1, 0, 0)(0.5, 0.5, 0);
+    \tdplotdrawpolytopearc[-]{0.2}{below}{$\phi$}
+
+    \draw[vector, red] (O) -- (0, 0, 0.3) node[right]{$\vec{a}_z$};
+    \draw[vector, blue] (O) -- node[right, yshift=-1]{$\vec{a}_\rho$} (0.212, 0.212, 0);
+
+    \draw[vector] (0.5, 0.5, 0) -- node[below]{$\vec{a}_\phi$} +(-0.245, 0.212, 0);
+
+\end{tikzpicture}
