@@ -194,19 +194,32 @@
             Exchanging two rows of a determinant two times doesn't really doesn't affect it, right? That fact, leads to the equality:
             $$\vec{B}\cdot\left(\vec{C}\times\vec{A}\right) = \vec{C}\cdot\left(\vec{A}\times\vec{B}\right)$$
         \subsection{Applications}
-            \input{chapters/chapter-1/diagrams/parallelopiped}
-            The area of a parallelopiped can be calculated by the following formula:
-            $$Area = (\textrm{area of base face})\times(h)$$
-            Where $h$ is the perpendicular distance between the base face and the top face.
-            In figure~\ref{fig:parallelopiped} we can see that a parallelopiped is uniquely identified by three vectors $\vec{A}$, $\vec{B}$ and $\vec{C}$. The area of the base face, as we already know, is given by the magnitude of the cross product of $\vec{A}$ and $\vec{B}$. The vector $\vec{A}\times\vec{B}$ is also shown in figure~\ref{fig:parallelopiped}. The magnitude of this vector gives us the area and direction of this vector is perpendicular to the plane formed by $\vec{A}$ and $\vec{B}$. Now we need to figure out the perpendicular distance between the base face and the top face. That distance is given by $|\vec{C}|\cos\theta$. If we take the dot product of $\vec{A}\times\vec{B}$ and $\vec{C}$ we get:
-            \begin{align*}
-                \vec{C}\cdot\left(\vec{A}\times\vec{B}\right) = \left(|\vec{C}|\cos\theta\right)\left(|\vec{A}\times\vec{B}|\right)\\ 
-                = \left(|\vec{C}|\cos\theta\right)\left(\textrm{area of base face}\right)\\
-                = \left(\textrm{h}\right)\left(\textrm{area of base face}\right)\\
-                = \textrm{Volume of the parallelopiped}
-            \end{align*}
-            Hence we have proven that the scalar product of three vectors gives us the volume of the parallelopiped formed by them.
-
+            \subsubsection{Volume of Parallelopiped}
+                \input{chapters/chapter-1/diagrams/parallelopiped}
+                The area of a parallelopiped can be calculated by the following formula:
+                $$Area = (\textrm{area of base face})\times(h)$$
+                Where $h$ is the perpendicular distance between the base face and the top face.
+                In figure~\ref{fig:parallelopiped} we can see that a parallelopiped is uniquely identified by three vectors $\vec{A}$, $\vec{B}$ and $\vec{C}$. The area of the base face, as we already know, is given by the magnitude of the cross product of $\vec{A}$ and $\vec{B}$. The vector $\vec{A}\times\vec{B}$ is also shown in figure~\ref{fig:parallelopiped}. The magnitude of this vector gives us the area and direction of this vector is perpendicular to the plane formed by $\vec{A}$ and $\vec{B}$. Now we need to figure out the perpendicular distance between the base face and the top face. That distance is given by $|\vec{C}|\cos\theta$. If we take the dot product of $\vec{A}\times\vec{B}$ and $\vec{C}$ we get:
+                \begin{align*}
+                    \vec{C}\cdot\left(\vec{A}\times\vec{B}\right) = \left(|\vec{C}|\cos\theta\right)\left(|\vec{A}\times\vec{B}|\right)\\ 
+                    = \left(|\vec{C}|\cos\theta\right)\left(\textrm{area of base face}\right)\\
+                    = \left(\textrm{h}\right)\left(\textrm{area of base face}\right)\\
+                    = \textrm{Volume of the parallelopiped}
+                \end{align*}
+                Hence we have proven that the scalar product of three vectors gives us the volume of the parallelopiped formed by them.
+            \subsubsection{Volume of a Tetrahedron}
+                \input{chapters/chapter-1/diagrams/tetrahedron}
+                A tetrahedron is uniquely identified by three vectors $\vec{A}$, $\vec{B}$ and $\vec{C}$. Figure~\ref{fig:tetrahedron} represents one such tetrahedron. The area of a tetrahedron is given by the following formula:
+                $$\left(\textrm{Area of a tetrahedron}\right)=\left(\textrm{Area of base}\right)\times(h)$$
+                We can see in figure~\ref{fig:tetrahedron} that:
+                $$\textrm{Area of base} = \frac{1}{2}\times\textrm{Area of the parallelogram formed by }\vec{A}, \vec{B}$$
+                We also know from the previous sections that:
+                $$\textrm{Area of the parallelogram formed by }\vec{A}, \vec{B} = |\vec{A}||\vec{B}|\sin\theta$$
+                We can see from figure~\ref{fig:tetrahedron} that:
+                $$h = |\vec{C}|\cos\phi$$
+                Thus the total volume is given by:
+                $$\textrm{Volume} = \frac{1}{3}\left(\frac{1}{2}|\vec{A}||\vec{B}|\sin\theta\right)\left(|\vec{C}|\cos\phi\right)$$
+                $$\textrm{Volume} = \frac{1}{6}\left(\vec{A}\times\vec{B}\right)\cdot\vec{C}$$
     \section{Curl and Divergence}
         Before we discuss Curl and Divergence, we define the $\nabla$ operator as:
         $$\nabla = \frac{\partial}{\partial x}\vec{a}_x + \frac{\partial}{\partial y}\vec{a}_y + \frac{\partial}{\partial z}\vec{a}_z$$

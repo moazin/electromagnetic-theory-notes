@@ -1,0 +1,39 @@
+% sets up the perspective from which we are looking at the picture {theta}{phi}
+% {theta} defines the rotion by x axis while {phi} defines the rotation by z axis
+\tdplotsetmaincoords{60}{70}
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        [scale=3,
+        tdplot_main_coords,
+        axis/.style={->,black,thick},
+        vector/.style={-stealth,very thick},
+        vector guide/.style={dashed,red,thick}]
+
+        \coordinate (O) at (0, 0, 0);
+        \coordinate (A) at (1, 0, 0);
+        \coordinate (B) at (0, 1, 0);
+        \coordinate (C) at (0.3, 0.3, 1);
+
+        \draw[vector, red] (O) -- node[left]{$\vec{A}$}(A);
+        \draw[vector, blue] (O) -- node[above]{$\vec{B}$}(B);
+        \draw[vector, green] (O) -- node[right]{$\vec{C}$}(C);
+
+        \draw (A) -- (B);
+        \draw (A) -- (C);
+        \draw (B) -- (C);
+        \draw[dashed] (O) -- node[left]{$h$} ($(O)!(C)!(0, 0, 1)$);
+
+        \draw[dotted] (A) -- ($(A)+(B)$);
+        \draw[dotted] (B) -- ($(B)+(A)$);
+
+        \tdplotdefinepoints(0,0,0)(1, 0, 0)(0, 1, 0);
+        \tdplotdrawpolytopearc[<->]{0.3}{below}{$\theta$}
+
+
+        \tdplotdefinepoints(0,0,0)(0, 0, 1)(0.3, 0.3, 1);
+        \tdplotdrawpolytopearc[<->]{0.4}{above}{$\phi$}
+    \end{tikzpicture}
+    \caption{The Tetrahedron formed by $\vec{A}$, $\vec{B}$ and $\vec{C}$}
+    \label{fig:tetrahedron}
+\end{figure}
