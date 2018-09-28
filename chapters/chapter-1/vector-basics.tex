@@ -232,3 +232,63 @@
             A point in RCS as shown in figure~\ref{fig:point-rcs} is represented by three coordinates $\left(x, y, z\right)$ each representing the distance along that particular axis as shown in the figure. RCS has three unit vectors $\vec{a}_x$, $\vec{a}_y$ and $\vec{a}_z$.
         \subsection{Cylindrical Coordinate System}
             \input{chapters/chapter-1/diagrams/point-ccs}
+            A point in CCS, as depicted in figure~\ref{fig:pointinccs}, is represented by three coordinates $\left(\rho, \phi, z\right)$. $\rho$ is the distance between the origin and the point's projection on the $xy$ plane. $\phi$ is the angle between the x-axis and the $\rho$ line. $z$ is the distance between the point and it's projection on the $xy$ plane. The three unit vectors in this coordinate system are $\vec{a}_\rho$, $\vec{a}_\phi$ and $\vec{a}_z$. $\vec{a}_z$ is the same as in RCS. $\vec{a}_\rho$ takes the direction along the $\rho$ line, and $\vec{a}_\phi$ takes the direction of increasing $\phi$.
+            
+            Let's write out the equations to convert $(x, y, z)$ to $(\rho, \phi, z)$ and back.
+            \begin{align}
+                x = \rho\cos\phi \\
+                y = \rho\sin\phi \\
+                z = z
+            \end{align}
+            \begin{align}
+                \rho = \sqrt{x^2+y^2} \\
+                \phi = \tan^{-1}\phi
+            \end{align}
+
+            Let's now try and write the equations to represent the unit vectors $\vec{a}_\rho$, $\vec{a}_\phi$ in terms of $\vec{a}_x$, $\vec{a}_y$ and $\vec{a}_z$ respectively. $\vec{a}_z$ doesn't need to be converted since its the same on both sides.
+            We call the vector from the origin to the point's projection on xy axis $\vec{\rho}$. $\vec{\rho}$ can be written as:
+            $$\vec{\rho} = \rho\cos\phi\vec{a}_x + \rho\sin\phi\vec{a}_y$$
+            $$|\vec{\rho}| = \rho$$
+            Thus we can write:
+            $$\vec{a}_\rho = \cos\phi\vec{a}_x + \sin\phi\vec{a}_y$$
+            We can see that $\vec{a}_\phi$ is the cross product of $\vec{a}_z$ and $\vec{a}_\rho$:
+            $$\vec{a}_\phi = \vec{a}_z\times\vec{a}_\rho$$
+            \begin{align}
+                \vec{a}_\rho = \cos\phi\vec{a}_x + \sin\phi\vec{a}_y + 0\vec{a}_z \\ 
+                \vec{a}_\phi = -\sin\phi\vec{a}_x + \cos\phi\vec{a}_y + 0\vec{a}_z \\
+                \vec{a}_z = 0\vec{a}_x + 0\vec{a}_y + \vec{a}_z
+            \end{align}
+            Writing this in an elegant form:
+            \begin{equation}
+                \begin{bmatrix}
+                    \vec{a}_\rho \\ \vec{a}_\phi \\ \vec{a}_z 
+                \end{bmatrix} = 
+                \begin{bmatrix}
+                    \cos\phi & \sin\phi & 0 \\
+                    -\sin\phi & \cos\phi & 0 \\
+                    0 & 0 & 1
+                \end{bmatrix}
+                \begin{bmatrix}
+                    \vec{a}_x \\
+                    \vec{a}_y \\
+                    \vec{a}_z
+                \end{bmatrix}
+            \end{equation}
+            This can be summarized as:
+            $$\vec{u}_c = T\left(\phi\right)\vec{u}_R$$
+            Where $T\left(\phi\right)$ is the transformation written as a function of $\phi$. To find the reverse transformation we can take the inverse of this transformation matrix. But we should note that this transformation is what is called an Orthogonal Transformation. In an Orthogonal Transformation the inverse transformation matrix is given by taking the transpose of the transformation matrix. Thus:
+            \begin{equation}
+                \begin{bmatrix}
+                    \vec{a}_x \\ \vec{a}_y \\ \vec{a}_z
+                \end{bmatrix} = 
+                \begin{bmatrix}
+                    \cos\phi & -\sin\phi & 0 \\
+                    \sin\phi & \cos\phi & 0 \\
+                    0 & 0 & 1
+                \end{bmatrix}
+                \begin{bmatrix}
+                    \vec{a}_\rho \\
+                    \vec{a}_\phi \\
+                    \vec{a}_z
+                \end{bmatrix}
+            \end{equation}
