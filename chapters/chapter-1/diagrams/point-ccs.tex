@@ -1,39 +1,55 @@
 % sets up the perspective from which we are looking at the picture {theta}{phi}
 % {theta} defines the rotion by x axis while {phi} defines the rotation by z axis
-\tdplotsetmaincoords{60}{120}
-\begin{tikzpicture}
-    [scale=4,
-    tdplot_main_coords,
-    axis/.style={->,black,thick},
-    vector/.style={-stealth,very thick},
-    vector guide/.style={dashed,red,thick}]
-    
+\begin{figure}
+    \tdplotsetmaincoords{60}{120}
+    \centering
+    \begin{tikzpicture}
+        [scale=4,
+        tdplot_main_coords,
+        axis/.style={->,black,thick},
+        vector/.style={-stealth,very thick},
+        vector guide/.style={dashed,red,thick}]
+        
+        % defines unit vector length
+        \def\unit{0.3}
 
-    \def\ax{0.5}
-    \def\ay{0.5}
-    \def\az{0.5}
+        % defines the x, y, and z coordinates for point P
+        \def\ax{0.5}
+        \def\ay{0.5}
+        \def\az{0.5}
 
-    \def\rholen{ {sqrt(\ax^2+\ay^2)} }
-    \coordinate (O) at (0, 0, 0);
-    \coordinate (P) at (\ax, \ay, \az);
+        \coordinate (O) at (0, 0, 0); % denote origin by (O)
+        \coordinate (P) at (\ax, \ay, \az); % denote point P by (P)
 
-    % this should serve as our unit vector
-    \draw[axis] (0, 0, 0) -- (1, 0, 0) node[anchor=north east]{$x$};
-    \draw[axis] (0, 0, 0) -- (0, 1, 0) node[anchor=north west]{$y$};
-    \draw[axis] (0, 0, 0) -- (0, 0, 1) node[anchor=south]{$z$};
+        \def\rholength{ {sqrt(\ax^2+\ay^2)} } % \rholength stores the distance between Pxy and O
 
-    \draw[blue] (O) -- node[right]{$\rho$} (\ax, \ay, 0);
-    \draw[dashed] (\rholen, 0, 0) arc (0:90:\rholen);
-    \draw[red] (P) -- node[right]{$z$} (\ay, \ay, 0);
+        % these should serve as our axes
+        \draw[axis] (0, 0, 0) -- (1, 0, 0) node[anchor=north east]{$x$};
+        \draw[axis] (0, 0, 0) -- (0, 1, 0) node[anchor=north west]{$y$};
+        \draw[axis] (0, 0, 0) -- (0, 0, 1) node[anchor=south]{$z$};
 
-    \fill[red] (P) circle[radius=0.5pt];
+        \draw[blue] (O) -- node[right]{$\rho$} (\ax, \ay, 0); % draws rho line
+        \draw[dashed] (\rholength, 0, 0) arc (0:90:\rholength); % draws the circle r=rho on xy plane
+        \draw[red] (P) -- node[right]{$z$} (\ay, \ay, 0); % line between point P and its xy plane projection
 
-    \tdplotdefinepoints(0,0,0)(1, 0, 0)(0.5, 0.5, 0);
-    \tdplotdrawpolytopearc[-]{0.2}{below}{$\phi$}
+        \fill[red] (P) circle[radius=0.5pt] node[right]{$P(\rho, \phi, z)$}; % point P as a filled circle
 
-    \draw[vector, red] (O) -- (0, 0, 0.3) node[right]{$\vec{a}_z$};
-    \draw[vector, blue] (O) -- node[right, yshift=-1]{$\vec{a}_\rho$} (0.212, 0.212, 0);
+        % drawing the arc of the angle between rho and x axis
+        \tdplotdefinepoints(0,0,0)(1, 0, 0)(\ax, \ax, 0); 
+        \tdplotdrawpolytopearc[-]{0.2}{below}{$\phi$}
 
-    \draw[vector] (0.5, 0.5, 0) -- node[below]{$\vec{a}_\phi$} +(-0.245, 0.212, 0);
+        % setting up some lengths for drawing unit vectors
+        \def\unitvectorrhox{ {\unit*cos{45}} }
+        \def\unitvectorrhoy{ {\unit*sin{45}} }
 
-\end{tikzpicture}
+        \def\unitvectorphix{ {\unit*cos{135}} }
+        \def\unitvectorphiy{ {\unit*sin{135}} }
+
+        \draw[vector, red] (O) -- (0, 0, \unit) node[right]{$\vec{a}_z$}; % unit vector az
+        \draw[vector, blue] (O) -- node[right, yshift=10]{$\vec{a}_\rho$} (\unitvectorrhox, \unitvectorrhoy, 0); % unit vector a\rho
+        \draw[vector] (0.5, 0.5, 0) -- node[below]{$\vec{a}_\phi$} +(\unitvectorphix, \unitvectorphiy, 0); % unit vector a\phi
+
+    \end{tikzpicture}
+    \caption{A point $P$ represented in CCS}
+    \label{fig:pointinccs}
+\end{figure}
