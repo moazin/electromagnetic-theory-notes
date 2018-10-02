@@ -1,0 +1,54 @@
+\begin{figure}
+    \tdplotsetmaincoords{60}{120}
+    \centering
+    \begin{tikzpicture}
+        [scale=4,
+        tdplot_main_coords,
+        axis/.style={->,black,thick},
+        vector/.style={-stealth,very thick},
+        vector guide/.style={dashed,red,thick}]
+
+        % defines unit vector length
+        \def\unit{0.3}
+
+        % define our point P in spherical coordiantes
+        \def\r{0.6}
+        \def\phiii{80}
+        \def\thetaaa{45}
+
+        % defines the x, y, and z coordinates for point P
+        \def\ax{ {\r*sin(\thetaaa)*cos(\phiii)} }
+        \def\ay{ {\r*sin(\thetaaa)*sin(\phiii)} }
+        \def\az{ {\r*cos(\thetaaa)} }
+
+        \coordinate (O) at (0, 0, 0); % denote origin by (O)
+        \coordinate (P) at (\ax, \ay, \az); % denote point P by (P)
+
+        \def\rholength{ {sqrt(\ax^2+\ay^2)} } % \rholength stores the distance between Pxy and O
+
+
+        % these should serve as our axes
+        \draw[axis] (0, 0, 0) -- (1, 0, 0) node[anchor=north east]{$x$};
+        \draw[axis] (0, 0, 0) -- (0, 1, 0) node[anchor=north west]{$y$};
+        \draw[axis] (0, 0, 0) -- (0, 0, 1) node[anchor=south]{$z$};
+
+        \draw[blue] (O) -- node[right]{$\rho$} (\ax, \ay, 0); % draws rho line
+        % \draw[dashed] (\rholength, 0, 0) arc (0:90:\rholength); % draws the circle r=rho on xy plane
+        \draw[red, dashed] (P) -- (\ax, \ay, 0); % line between point P and its xy plane projection
+
+        \draw[black] (O) -- (P); % drawing the r part
+
+        \fill[red] (P) circle[radius=0.5pt] node[right]{$P(r, \phi, \theta)$}; % point P as a filled circle
+
+        % drawing the arc of the angle between rho and x axis
+        \tdplotdefinepoints(0,0,0)(1,0,0)(\ax, \ay, 0)
+        \tdplotdrawpolytopearc[-]{0.2}{below}{$\phi$}
+
+        % create a theta plane basically
+        \tdplotsetthetaplanecoords{\phiii}
+        %draw theta arc and label, using rotated coordinate system
+        \tdplotdrawarc[tdplot_rotated_coords]{(0,0,0)}{0.2}{0}{\thetaaa}{anchor=south west}{$\theta$}
+
+    \end{tikzpicture}
+    \caption{A point in Spherical Coordinate Systems}
+\end{figure}
