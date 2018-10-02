@@ -259,7 +259,7 @@
                 \vec{a}_z = 0\vec{a}_x + 0\vec{a}_y + \vec{a}_z
             \end{align}
             Writing this in an elegant form:
-            \begin{equation}
+            \begin{equation}\label{eq:rcstoccsunit}
                 \begin{bmatrix}
                     \vec{a}_\rho \\ \vec{a}_\phi \\ \vec{a}_z 
                 \end{bmatrix} = 
@@ -290,5 +290,63 @@
                     \vec{a}_\rho \\
                     \vec{a}_\phi \\
                     \vec{a}_z
+                \end{bmatrix}
+            \end{equation}
+
+            A vector $\vec{A}$ can be represented in RCS as:
+            \begin{equation}\label{eq:vectorAinRCS}
+                \vec{A} = A_x\vec{a}_x = A_y\vec{a}_y + A_z\vec{a}_z
+            \end{equation}
+            The same vector can be represented in CCS as:
+            $$\vec{A} = A_\rho\vec{a}_\rho + A_\phi\vec{a}_\phi + A_z\vec{a}_z$$
+            Let's try to write a relationship between $A_\rho$, $A_\phi$ and $A_z$ in terms of $A_x$, $A_y$ and $A_z$.
+            We start with the equation:
+            $$\vec{A} = A_\rho\vec{a}_\rho + A_\phi\vec{a}_\phi + A_z\vec{a}_z$$
+            We try to replace $\vec{a}_\rho$, $\vec{a}_\phi$ with their RCS counterparts by using equation~\ref{eq:rcstoccsunit}.
+            \begin{align*}
+                \vec{A} = A_\rho\left(\cos\phi\vec{a}_x + \sin\phi\vec{a}_y\right) + \\
+                          A_\phi\left(-\sin\phi\vec{a}_x + \cos\phi\vec{a}_y\right) + \\
+                          A_z\vec{a}_z
+            \end{align*}
+            Grouping the terms in the above equation by unit vectors we get:
+            \begin{align*}
+                \vec{A} =  + \vec{a}_x\left(A_\rho\cos\phi - A_\phi\sin\phi\right)\\
+                           + \vec{a}_y\left(A_\rho\sin\phi + A_\phi\cos\phi\right)\\
+                           + A_z\vec{a}_z
+            \end{align*}
+            Thus comparing this with equation~\ref{eq:vectorAinRCS} we can conclude:
+            \begin{align*}
+                A_x = A_\rho\cos\phi - A_\phi\sin\phi\\
+                A_y = A_\rho\sin\phi + A_\phi\cos\phi\\
+                A_z = A_z
+            \end{align*}
+            We can write this in an elegant way as:
+            \begin{equation}
+                \begin{bmatrix}
+                    A_x \\ A_y \\ A_z
+                \end{bmatrix}
+                =
+                \begin{bmatrix}
+                    \cos\phi & -\sin\phi & 0 \\
+                    \sin\phi & \cos\phi & 0 \\
+                    0 & 0 & 1
+                \end{bmatrix}
+                \begin{bmatrix}
+                    A_\rho \\ A_\phi \\ A_z
+                \end{bmatrix}
+            \end{equation}
+            Since this transformation is orthogonal too we can find the inverse relationship by simply taking the transpose of the transformation matrix:
+            \begin{equation}
+                \begin{bmatrix}
+                    A_\rho \\ A_\phi \\ A_z
+                \end{bmatrix}
+                =
+                \begin{bmatrix}
+                    \cos\phi & \sin\phi & 0 \\
+                    -\sin\phi & \cos\phi & 0 \\
+                    0 & 0 & 1
+                \end{bmatrix}
+                \begin{bmatrix}
+                    A_x \\ A_y \\ A_z
                 \end{bmatrix}
             \end{equation}
