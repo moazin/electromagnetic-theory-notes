@@ -49,7 +49,6 @@
 
         \draw[black] (O) -- (P); % drawing the r part
 
-        \fill[red] (P) circle[radius=0.5pt] node[right]{$P(r, \phi, \theta)$}; % point P as a filled circle
 
         % drawing the arc of the angle between rho and x axis
         \tdplotdrawarc[magenta]{(0,0,0)}{0.2}{0}{\phiii}{below}{$\phi$}
@@ -64,6 +63,8 @@
         \draw[vector, red] (O) -- node[right, yshift=-3]{$\vec{a}_r$} (\unitx, \unity, \unitz);
         \draw[vector, magenta] (\ax, \ay, 0) -- node[below]{$\vec{a}_\phi$} +(\phix, \phiy, 0); 
         \draw[vector, cyan] (\ax, \ay, \az) -- node[right]{$\vec{a}_\theta$} +(\thetax, \thetay, \thetaz);
+
+        \fill[red] (P) circle[radius=0.5pt] node[right]{$P(r, \phi, \theta)$}; % point P as a filled circle
 
     \end{tikzpicture}
     \caption{A point in Spherical Coordinate Systems}
