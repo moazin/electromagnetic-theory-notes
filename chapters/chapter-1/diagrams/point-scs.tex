@@ -12,20 +12,31 @@
         \def\unit{0.3}
 
         % define our point P in spherical coordiantes
-        \def\r{0.6}
-        \def\phiii{80}
+        \def\r{0.8}
+        \def\phiii{60}
         \def\thetaaa{45}
 
         % defines the x, y, and z coordinates for point P
-        \def\ax{ {\r*sin(\thetaaa)*cos(\phiii)} }
-        \def\ay{ {\r*sin(\thetaaa)*sin(\phiii)} }
-        \def\az{ {\r*cos(\thetaaa)} }
+        \pgfmathsetmacro{\ax}{\r*sin(\thetaaa)*cos(\phiii)}
+        \pgfmathsetmacro{\ay}{\r*sin(\thetaaa)*sin(\phiii)}
+        \pgfmathsetmacro{\az}{\r*cos(\thetaaa)}
+
+        % sets the x, y for unit vector a\rho
+        \pgfmathsetmacro{\phix}{0.3*cos(\phiii+90)}
+        \pgfmathsetmacro{\phiy}{0.3*sin(\phiii+90)}
+
+        % sets the x, y, z for unit vector a_r
+        \pgfmathsetmacro{\unitx}{\unit*sin(\thetaaa)*cos(\phiii)}
+        \pgfmathsetmacro{\unity}{\unit*sin(\thetaaa)*sin(\phiii)}
+        \pgfmathsetmacro{\unitz}{\unit*cos(\thetaaa)}
+
+        % sets the x, y, z for unit vector a_\Theta
+        \pgfmathsetmacro{\thetaz}{\unit*cos(\thetaaa+90)}
+        \pgfmathsetmacro{\thetay}{\unit*sin(\thetaaa+90)*sin(\phiii)}
+        \pgfmathsetmacro{\thetax}{\unit*sin(\thetaaa+90)*sin(\phiii)}
 
         \coordinate (O) at (0, 0, 0); % denote origin by (O)
         \coordinate (P) at (\ax, \ay, \az); % denote point P by (P)
-
-        \def\rholength{ {sqrt(\ax^2+\ay^2)} } % \rholength stores the distance between Pxy and O
-
 
         % these should serve as our axes
         \draw[axis] (0, 0, 0) -- (1, 0, 0) node[anchor=north east]{$x$};
@@ -38,16 +49,20 @@
 
         \draw[black] (O) -- (P); % drawing the r part
 
+        % drawing the three unit vectors
+        \draw[vector, red] (O) -- node[right, yshift=-3]{$\vec{a}_r$} (\unitx, \unity, \unitz);
+        \draw[vector, magenta] (\ax, \ay, 0) -- node[below]{$\vec{a}_\phi$} +(\phix, \phiy, 0); 
+        \draw[vector, cyan] (\ax, \ay, \az) -- node[right]{$\vec{a}_\theta$} +(\thetax, \thetay, \thetaz);
+
         \fill[red] (P) circle[radius=0.5pt] node[right]{$P(r, \phi, \theta)$}; % point P as a filled circle
 
         % drawing the arc of the angle between rho and x axis
-        \tdplotdefinepoints(0,0,0)(1,0,0)(\ax, \ay, 0)
-        \tdplotdrawpolytopearc[-]{0.2}{below}{$\phi$}
+        \tdplotdrawarc[magenta]{(0,0,0)}{0.2}{0}{\phiii}{below}{$\phi$}
 
         % create a theta plane basically
         \tdplotsetthetaplanecoords{\phiii}
         %draw theta arc and label, using rotated coordinate system
-        \tdplotdrawarc[tdplot_rotated_coords]{(0,0,0)}{0.2}{0}{\thetaaa}{anchor=south west}{$\theta$}
+        \tdplotdrawarc[tdplot_rotated_coords, cyan]{(0,0,0)}{0.2}{0}{\thetaaa}{anchor=south west}{$\theta$}
 
     \end{tikzpicture}
     \caption{A point in Spherical Coordinate Systems}
