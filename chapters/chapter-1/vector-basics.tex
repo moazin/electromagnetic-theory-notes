@@ -351,5 +351,31 @@
                 \end{bmatrix}
             \end{equation}
         \subsection{Spherical Coordinate Systems}
-            A point in spherical coordinate system can be represented as:
             \input{chapters/chapter-1/diagrams/point-scs.tex}
+            A point in spherical coordinate system can be represented as shown in figure~\ref{fig:point-scs}.
+            In spherical coordinate system, a point is represented by three coordinates $(r,\phi,\theta)$. Here $r$ is the distance from the origin to the point itself. $\phi$ is the angle the point's projection on the xy-plane makes with the positive x axis. And finally $\theta$ is the angle the line from the origin to the point itself makes with the positive z axis. Two more conditions apply here:
+            \begin{align*}
+                \theta \in & \left[0,\pi\right]\\
+                \phi \in & \left[0, 2\pi\right]
+            \end{align*}
+            Let's write the equations which can let us convert between spherical coordinates and rectangular coordinates.
+            It is very easy to see in figure~\ref{fig:point-scs} that:
+            \begin{align*}
+                z = r\cos\theta\\
+                \rho = r\sin\theta\\
+                x = \rho\cos\phi\\
+                y = \rho\sin\phi
+            \end{align*}
+            Thus we can write:
+            \begin{align}
+                z = r\cos\theta\\
+                x = r\sin\theta\cos\phi\\
+                y = r\sin\theta\sin\phi
+            \end{align}
+            We can do the reverse as:
+            \begin{align}
+                r = & \sqrt{x^2+y^2+z^2}\\
+                \theta = & \tan^{-1}\left(\frac{\sqrt{x^2+y^2}}{z}\right)\\
+                \theta = & \cos^{-1}\left(\frac{z}{\sqrt{x^2+y^2+z^2}}\right)\\
+                \phi = & \tan^{-1}\left(\frac{y}{x}\right)
+            \end{align}
