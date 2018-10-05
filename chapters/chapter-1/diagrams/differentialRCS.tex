@@ -1,0 +1,80 @@
+% sets up the perspective from which we are looking at the picture {theta}{phi}
+% {theta} defines the rotion by x axis while {phi} defines the rotation by z axis
+\tdplotsetmaincoords{60}{120}
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        [scale=4,
+        tdplot_main_coords,
+        axis/.style={->,black,thick},
+        vector/.style={-stealth,very thick},
+        vector guide/.style={dashed,red,thick}]
+
+        \coordinate (O) at (0, 0, 0);
+
+        % this should serve as our unit vector
+        \def\unit{0.3} 
+
+        \def\ax{0.4}
+        \def\ay{0.5}
+        \def\az{0.8}
+
+        \def\bx{1}
+        \def\by{1}
+        \def\bz{1.2}
+
+        \pgfmathsetmacro{\dx}{\bx-\ax}
+        \pgfmathsetmacro{\dy}{\by-\ay}
+        \pgfmathsetmacro{\dz}{\bz-\az}
+
+        \pgfmathsetmacro{\dxd}{\dx/2}
+        \pgfmathsetmacro{\dyd}{\dy/2}
+        \pgfmathsetmacro{\dzd}{\dz/2}
+
+        % drawing axes
+        \draw[axis] (0, 0, 0) -- (1, 0, 0) node[anchor=north east]{$x$};
+        \draw[axis] (0, 0, 0) -- (0, 1, 0) node[anchor=north west]{$y$};
+        \draw[axis] (0, 0, 0) -- (0, 0, 1) node[anchor=south]{$z$};
+
+        % drawing the main vector B
+        \fill[red] (\ax, \ay, \az) circle[radius=0.2pt] node[right]{};
+        \draw[vector, red] (0, 0, 0) -- (\ax, \ay, \az);
+
+        \fill[blue] (\bx, \by, \bz) circle[radius=0.2pt] node[right]{};
+        \draw[vector, blue] (0, 0, 0) -- (\bx, \by, \bz);
+
+        \draw (\ax, \ay, \az) -- ++(\dx, 0, 0) -- ++(0, \dy, 0) -- node[right]{$dx$} ++(-\dx, 0, 0) -- ++(0, -\dy, 0);
+        \draw (\ax, \ay, \az) -- ++(0, 0, \dz) -- ++(\dx, 0, 0) -- ++(0, \dy, 0) -- ++(-\dx, 0, 0) -- node[above]{$dy$} ++(0, -\dy, 0);
+        \draw (\ax+\dx, \ay, \az) -- +(0, 0, \dz);
+        \draw (\ax+\dx, \ay+\dy, \az) -- +(0, 0, \dz);
+        \draw (\ax, \ay+\dy, \az) -- node[right]{$dz$} +(0, 0, \dz);
+
+        % drawing the projections of red
+        \draw[vector guide] (\ax, \ay, \az) -- (\ax, \ay, 0);
+        \draw[vector guide] (\ax, 0, 0) -- (\ax, \by, 0);
+        \draw[vector guide] (0, \ay, 0) -- (\bx, \ay, 0);
+
+        % drawing the projections of blue
+        \draw[vector guide, blue] (\bx, \by, \bz-\dz) -- (\bx, \by, 0);
+        \draw[vector guide, blue] (\bx, 0, 0) -- (\bx, \by, 0);
+        \draw[vector guide, blue] (0, \by, 0) -- (\bx, \by, 0);
+
+        \draw[vector guide, black] (\ax+\dx, \ay, \az) -- (\ax+\dx, \ay, 0);
+        \draw[vector guide, black] (\ax, \ay+\dy, \az) -- (\ax, \ay+\dy, 0);
+
+        % trying to draw shades
+        \draw[fill=gray, fill opacity=0.1] (\bx, \by, \bz) -- ++(0, 0, -\dz) -- ++(-\dx, 0, 0) -- ++(0, 0, \dz) -- ++(\dx, 0, 0);
+        \draw[vector] (\bx-\dxd, \by, \bz-\dzd) -- ++(0, \dx*\dz, 0) node[right]{$d\vec{S}_y = dxdz\vec{a}_y$};
+
+        \draw[vector] (\bx-\dxd, \by-\dyd, \bz) -- ++(0, 0, \dx*\dy) node[above, xshift=10]{$d\vec{S}_z = dxdy\vec{a}_z$};
+
+        \draw[fill=gray, fill opacity=0.1] (\bx, \by, \bz) -- ++(0, 0, -\dz) -- ++(0, -\dy, 0) -- ++(0, 0, \dz) -- ++(0, \dy, 0);
+
+        \draw[vector] (\bx, \by-\dyd, \bz-\dzd) -- ++(\dy*\dz, 0, 0) node[left, xshift=-11]{$d\vec{S}_x = dydz\vec{a}_x$};
+
+        \draw[fill=gray, fill opacity=0.1] (\ax, \ay, \az) -- ++(0, 0, \dz) -- ++(\dx, 0, 0) -- ++(0, \dy, 0) -- ++(-\dx, 0, 0) -- node[above]{$dy$} ++(0, -\dy, 0);
+
+    \end{tikzpicture}
+    \caption{Two closeby points in RCS}
+    \label{fig:differentialRCS}
+\end{figure}
