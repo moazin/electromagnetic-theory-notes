@@ -379,3 +379,151 @@
                 \theta = & \cos^{-1}\left(\frac{z}{\sqrt{x^2+y^2+z^2}}\right)\\
                 \phi = & \tan^{-1}\left(\frac{y}{x}\right)
             \end{align}
+            Now we need to express the unit vectors $(\vec{a}_r, \vec{a}_\phi, \vec{a}_\theta)$ in terms of $(\vec{a}_x, \vec{a}_y, \vec{a}_z)$. 
+            Suppose we have a vector $\vec{r}$, and $r$ represents its magnitude. We can write it as:
+            $$\vec{r} = x\vec{a}_x + y\vec{a}_y + z\vec{a}_z$$
+            Dividing both sides by $r$ we get:
+            $$\frac{\vec{r}}{r} = \frac{x}{r}\vec{a}_x + \frac{y}{r}\vec{a}_y + \frac{z}{r}\vec{a}_z$$
+            Doing some substitutions we get:
+            $$\vec{a}_r = \frac{r\sin\theta\cos\phi}{r}\vec{a}_x + \frac{r\sin\theta\sin\phi}{r}\vec{a}_y + \frac{r\cos\theta}{r}\vec{a}_z$$
+            Simplifying we get:
+            $$\vec{a}_r = \sin\theta\cos\phi\vec{a}_x + 
+             \sin\theta\sin\phi\vec{a}_y +
+             \cos\theta\vec{a}_z 
+            $$
+            We already know that:
+            $$\vec{a}_\rho = \sin\phi\vec{a}_x + \cos\phi\vec{a}_y$$
+            We can see in figure~\ref{fig:point-scs} that the vector $\vec{a}_\phi$ is at an angle $\phi + 90$ from the positive x axis. Thus putting in this angle we get:
+            $$\vec{a}_\phi = \sin\left(\phi + 90\right)\vec{a}_x + \cos\left(\phi + 90\right)\vec{a}_y$$
+            Using trigonometric identities we can get:
+            $$\vec{a}_\phi = -\sin\phi\vec{a}_x + \cos\phi\vec{a}_y$$
+            We can get $\vec{a}_\theta$ by realizing that:
+            $$\vec{a}_\theta = \vec{a}_\phi \times \vec{a}_r$$
+            Evaluating this $\vec{a}_\theta$:
+            $$\vec{a}_\theta = 
+                \begin{vmatrix}
+                    \vec{a}_x & \vec{a}_y & \vec{a}_z \\
+                    -\sin\phi & \cos\phi & 0 \\
+                    \sin\theta\cos\phi & \sin\theta\sin\phi & \cos\theta 
+                \end{vmatrix}$$
+            Expanding this we get:
+            $$
+                \vec{a}_\theta = 
+                \vec{a}_x\begin{vmatrix}
+                    \cos\phi & 0 \\
+                    \sin\theta\sin\phi & \cos\theta
+                \end{vmatrix} - 
+                \vec{a}_y\begin{vmatrix}
+                   -\sin\phi & 0 \\
+                   \sin\theta\cos\phi & \cos\theta 
+                \end{vmatrix} + 
+                \vec{a}_z\begin{vmatrix}
+                   -\sin\phi & \cos\phi \\
+                   \sin\theta\cos\phi & \sin\theta\sin\phi 
+                \end{vmatrix}
+            $$
+            $$
+                \vec{a}_\theta = \cos\theta\cos\phi\vec{a}_x
+                + \sin\phi\cos\theta\vec{a}_y
+                + \left(-sin^2\phi\sin\theta - \sin\theta\cos^2\phi\right)\vec{a}_z
+            $$
+            $$
+                \vec{a}_\theta = \cos\theta\cos\phi\vec{a}_x
+                + \sin\phi\cos\theta\vec{a}_y
+                - \sin\theta\vec{a}_z
+            $$
+            Or more elegantly:
+            $$\vec{a}_\theta = 
+                \begin{bmatrix}
+                    \cos\theta\cos\phi \\
+                    \sin\phi\cos\theta \\
+                    -\sin\theta
+                \end{bmatrix}
+            $$
+            Or even more elegantly we can write:
+            \begin{equation}
+                \begin{bmatrix}
+                    \vec{a}_r \\
+                    \vec{a}_\theta \\
+                    \vec{a}_\phi 
+                \end{bmatrix} 
+                =
+                \begin{bmatrix}
+                    \sin\theta\cos\phi & \sin\theta\sin\phi & \cos\theta \\
+                    \cos\theta\cos\phi & \sin\phi\cos\theta & -\sin\theta \\
+                    -\sin\phi & \cos\phi & 0
+                \end{bmatrix}
+                \begin{bmatrix}
+                    \vec{a}_x \\
+                    \vec{a}_y \\
+                    \vec{a}_z 
+                \end{bmatrix}
+            \end{equation}
+            Some useful relationships between these unit vectors are:
+            \begin{align}
+                \vec{a}_r \times \vec{a}_\theta & = \vec{a}_\phi \\
+                \vec{a}_\theta \times \vec{a}_\phi & = \vec{a}_r \\
+                \vec{a}_\phi \times \vec{a}_r & = \vec{a}_\theta 
+            \end{align}
+            Their reverses are easy to find. They will just have a negative sign.
+            Suppose we have a vector $\vec{A}$. We can express it in terms of RCS as:
+            $$\vec{A} = \vec{A}_x\vec{a}_x + \vec{A}_y\vec{a}_y + \vec{A}_z\vec{a}_z$$
+            We can also express it in SCS as:
+            $$\vec{A} = \vec{A}_r\vec{a}_r + \vec{A}_\theta\vec{a}_\theta + \vec{A}_\phi\vec{a}_\phi$$
+            Let's replace $\vec{a}_r$, $\vec{a}_\theta$ and $\vec{a}_\phi$ in terms of $\vec{a}_x$, $\vec{a}_y$ and $\vec{a}_z$ using the matrix we just derived:
+            \begin{align*}
+                \vec{A} = & A_r\left(\sin\theta\cos\phi\vec{a}_x + \sin\theta\sin\phi\vec{a}_y + \cos\theta\vec{a}_z\right) \\
+                & A_\theta\left(\cos\theta\cos\phi\vec{a}_x + \sin\phi\cos\theta\vec{a}_y -\sin\theta\vec{a}_z\right) \\ 
+                & A_\phi\left(-\sin\phi\vec{a}_x + \cos\phi\vec{a}_y\right)
+            \end{align*}
+            Let's group these by the unit vectors $\vec{a}_x$, $\vec{a}_y$ and $\vec{a}_z$
+            \begin{align*}
+                \vec{A} = & \vec{a}_x \left(A_r\sin\theta\cos\phi + A_\theta\cos\theta\cos\phi - A_\phi\sin\phi\right)\\
+                & \vec{a}_y \left(A_r\sin\theta\sin\phi + A_\theta\sin\phi\cos\theta + A_\phi\cos\phi\right) \\
+                & \vec{a}_z \left(A_r\cos\theta - A_\theta\sin\theta\right)
+            \end{align*}
+            \begin{equation}
+                \begin{bmatrix}
+                    A_x \\ A_y \\ A_z    
+                \end{bmatrix}
+                =
+                \begin{bmatrix}
+                    \sin\theta\cos\phi & \cos\theta\cos\phi & -\sin\phi \\
+                    \sin\theta\sin\phi & \cos\theta\sin\phi & \cos\theta \\
+                    \cos\theta & -\sin\theta & 0
+                \end{bmatrix}
+                \begin{bmatrix}
+                    A_r \\ A_\theta \\ A_\phi
+                \end{bmatrix}
+            \end{equation}
+            Transposing this we get the inverse transformation:
+            \begin{equation}
+                \begin{bmatrix}
+                    A_r \\ A_\theta \\ A_\phi    
+                \end{bmatrix}
+                =
+                \begin{bmatrix}
+                    \sin\theta\cos\phi & \sin\theta\sin\phi & \cos\theta \\
+                    \cos\theta\cos\phi & \cos\theta\sin\phi & -\sin\theta \\
+                    -\sin\phi & \cos\theta & 0
+                \end{bmatrix}
+                \begin{bmatrix}
+                    A_x \\ A_y \\ A_z
+                \end{bmatrix}
+            \end{equation}
+        \subsection{A little note about Orthogonal Transformations}
+            Orthogonal transformations have this special property that their inverse transformation matrix is just the transpose of the orignal transformation matrix. This is why we have been able to just transpose the matrix and get the reverse transformation matrix. We have done this with RCS to CCS and CCS to RCS transformations and we just did it with RCS to SCS and SCS to RCS. 
+            There are two types of orthogonal transformation matrix:
+            \begin{itemize}
+                \item Rotational Matrix (determinant $1$)
+                \item Reflection Matrix (determinant $-1$)
+            \end{itemize}
+            We can prove that the determinant of an Orthogonal Transformation matrix is always either $1$ or $-1$ as:
+            $$A^{-1} = A^T$$
+            Let's do a right multiplication by $A$.
+            $$A^{-1}A = A^TA$$
+            $$I = A^TA$$
+            Taking determinant on both sides:
+            $$det(I) = det(A^T)det(A)$$
+            $$1 = {det(A)}^2$$
+            $$det(A) = \pm 1$$
