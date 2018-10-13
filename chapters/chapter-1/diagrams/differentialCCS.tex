@@ -86,6 +86,12 @@
         \draw[fill=gray, fill opacity=0.1] (\ax, \ay, \az) -- +(0, 0, \dz) -- (\bx*\lengthratioinverse, \by*\lengthratioinverse, \bz) -- +(0, 0, -\dz);
         \draw[fill=gray, fill opacity=0.1] (\bx, \by, \bz) -- (\bx*\lengthratioinverse, \by*\lengthratioinverse, \bz) -- (\ax, \ay, \bz) -- (\ax*\lengthratio, \ay*\lengthratio, \bz) -- (\bx, \by, \bz);
 
+        \tdplotdrawarc[red]{(0, 0, 0)}{0.3}{0}{\phiii}{right}{$\phi$};
+        \tdplotdrawarc[black]{(0, 0, 0)}{\rhoblue-0.5}{\phiii}{\phiiis}{anchor=south east}{$d\phi$};
+
+        \draw (\ax, \ay, \az) -- node[below, xshift=-4]{$d\rho$} (\ax*\lengthratio, \ay*\lengthratio, \az) -- node[right]{$dz$} +(0, 0, \dz);
+        \draw (\bx, \by, \bz) -- node[right, yshift=4]{$\rho d\phi$} (\ax*\lengthratio, \ay*\lengthratio, \bz);
+
     \end{tikzpicture}
     \caption{Two closeby points in CCS}
     \label{fig:differentialCCS}
