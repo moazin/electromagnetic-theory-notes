@@ -193,6 +193,9 @@
             \end{equation}
             Exchanging two rows of a determinant two times doesn't really doesn't affect it, right? That fact, leads to the equality:
             $$\vec{B}\cdot\left(\vec{C}\times\vec{A}\right) = \vec{C}\cdot\left(\vec{A}\times\vec{B}\right)$$
+            % TODO: Must check this with instructor
+            Another property that these follow is:
+            $$\vec{A}\cdot\left(\vec{B}\times\vec{C}\right) = \vec{B}\left(\vec{C}\times\vec{A}\right) = \vec{C}\left(\vec{A}\times\vec{B}\right)$$
         \subsection{Applications}
             \subsubsection{Volume of Parallelopiped}
                 \input{chapters/chapter-1/diagrams/parallelopiped}
@@ -220,6 +223,11 @@
                 Thus the total volume is given by:
                 $$\textrm{Volume} = \frac{1}{3}\left(\frac{1}{2}|\vec{A}||\vec{B}|\sin\theta\right)\left(|\vec{C}|\cos\phi\right)$$
                 $$\textrm{Volume} = \frac{1}{6}\left(\vec{A}\times\vec{B}\right)\cdot\vec{C}$$
+    \section{Vector Triple Product}
+        It is defined as: $$\vec{A}\times \left(\vec{B}\times\vec{C}\right)$$
+        This can be evaluated by triple product expansion also known as `Lagrange\'s formula' which is:
+        $$\vec{B}\left(\vec{A}\times\vec{C}\right) - \vec{C}\left(\vec{A}\cdot\vec{B}\right)$$
+        It can also be represented as `BAC - CAP'.
     \section{Coordinate Systems}
         We will be dealing with three coordinate systems in this development:
         \begin{enumerate}
@@ -543,6 +551,7 @@
             $$d\vec{S}_z = \rho d\phi dz$$
             $$dV = \rho d\phi dz$$
         \subsection{SCS}
+            % TODO: complete this diagram
             \input{chapters/chapter-1/diagrams/differentialSCS}
             $$d\vec{l}=dr\vec{a}_r + rd\theta\vec{a}_\phi + r\sin\theta d\phi\vec{a}_\phi$$
             $$d\vec{S}_r = r^2\sin\theta d\phi d\theta \vec{a}_r$$
@@ -553,3 +562,127 @@
             $$\int\int\int dV$$
             $$V = \int_{0}^{2\pi}\int_{0}^{\pi}\int_{0}^{R}r^2\sin\theta drd\theta d\phi$$
             $$V = \frac{4\pi{r}^3}{3}$$
+    \section{The Nebla Operator}
+        % TODO: nabla operator is not as simple as it may sound, this vector definition of nabla looks a little troublesome to me so maybe a expalnation is needed here, will see
+        The nabla operator ($\nabla$) will be used at various places to describe different operations. Therefore it will be wise to introduce it at this point and define the various operations that it can represent.
+        $$\nabla = \frac{\partial}{\partial x}\vec{a}_x + \frac{\partial}{\partial y}\vec{a}_y + \frac{\partial}{\partial z}\vec{a}_z$$
+        There are four operations that it represents:
+        \begin{enumerate}
+            \item Gradient: $$grad(V) = \nabla V$$ Where $V$ is a scalar field.
+            % TODO: figure out whether it only operates on scalar or does it also take in vectors
+            \item Divergence: $$div(\vec{V}) = \nabla \cdot \vec{V}$$
+            \item Curl: $$curl(\vec{V}) = \nabla \times \vec{V}$$
+            \item Laplacian: $$\nabla^2V$$
+        \end{enumerate}
+        \subsection{Gradient}
+            % TODO
+            It operates on a scalar field and generates a vector field. The gradient of a scalar field $F$ is defined as:
+            $$grad(\vec{F}) = \frac{\partial G}{\partial x}\vec{a}_x + \frac{\partial G}{\partial y}\vec{a}_y + \frac{\partial G}{\partial z}\vec{a}_z$$
+            It tells us the direction of maximum increase of a field.
+                \subsubsection{Application}
+                    $$\vec{E} = -\nabla V$$
+        \subsection{Divergence}
+            So, let's try to write the divergence of a vector field $\vec{F}$:
+            $$div(\vec{F}) = \nabla \cdot \vec{F}$$
+            $$div(\vec{F}) = \left(\frac{\partial}{\partial x}\vec{a}_x + \frac{\partial}{\partial y}\vec{a}_y + \frac{\partial}{\partial z}\vec{a}_z\right) \cdot \left(F_x\vec{a}_x + F_y\vec{a}_y + F_z\vec{a}_z\right)$$
+            $$\frac{\partial F_x}{\partial x} + \frac{\partial F_y}{\partial y} + \frac{\partial F_z}{\partial z}$$
+            One of the maxwell's equation of electromagnetism is:
+            $$\nabla \cdot \vec{B} = 0$$
+            A description of this in words will be, ``No magnetic monopoles exist''
+        \subsection{Curl}
+            The curl gives the rotation in a field at some point:
+            Suppose a vector field $\vec{F}$ is given by:
+            $$\vec{F} = F_x\vec{a}_x + F_y\vec{a}_y + F_z\vec{a}_z$$
+            The curl of a vector field $\vec{F}$ is given as:
+            $$\nabla \times \vec{F} =
+                \begin{vmatrix}
+                    \vec{a}_x & \vec{a}_y & \vec{a}_z \\
+                    \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+                    F_x & F_y & F_z
+                \end{vmatrix}
+            $$ 
+            % TODO: figure out the name of this theorem
+            There is a theorem which is stated as:
+            $$curl(curl(\vec{F})) = grad(div(\vec{F})) - laplacian(\vec{F})$$
+            Or it can be mathematically written as:
+            $$\nabla\times\left(\nabla \times \vec{F}\right) = \nabla \left(\nabla\cdot\vec{F}\right) - \nabla^2\vec{F}$$
+            Laplacian is just going be defined in the next section.
+        \subsection{Laplacian}
+            The laplacian can operate on both scalar as well as vector fields. The laplacian of some field $G$ is defined as:
+            $$\nabla^2G = \frac{\partial^2}{\partial x^2}G_x + \frac{\partial^2}{\partial y^2}G_y + \frac{\partial^2}{\partial z^2}G_z$$
+        \subsection{Nabla in CCS}
+            Nabla in cylindrical coordinates is defined as:
+            $$\nabla = \frac{\partial}{\partial \rho}\vec{a}_\rho + \frac{1}{\rho}\frac{\partial}{\partial \phi} + \frac{\partial}{\partial z}\vec{a}_z$$
+            \subsection{Proof}
+                $$x = \rho\cos\phi \quad f(\rho, \phi)$$
+                $$y = \rho\sin\phi \quad f(\rho, \phi)$$
+                \begin{equation}\label{eq:rhodefinition}
+                    \rho^2 = x^2 + y^2
+                \end{equation}
+                $$\phi = tan^{-1}\left(\frac{y}{x}\right)$$
+                Since we know that $x$ is a function of $\rho$ and $\phi$ and $y$ is also a function of these two variables only we can define:
+                $$\frac{\partial}{\partial x} = \frac{\partial}{\partial \rho}\frac{\partial \rho}{\partial x} + \frac{\partial}{\partial \phi }\frac{\partial \phi}{\partial x}$$
+                $$\frac{\partial}{\partial y} = \frac{\partial}{\partial \rho}\frac{\partial \rho}{\partial y} + \frac{\partial}{\partial \phi }\frac{\partial \phi}{\partial y}$$
+                Now to actually use these equations we must figure out some terms:
+                $$\vec{a}_x = \cos\phi\vec{a}_\rho - \sin\phi\vec{a}_\phi$$
+                $$\vec{a}_y = \sin\phi\vec{a}_\rho + \cos\phi\vec{a}_\phi$$
+                We also need to figure out the partial terms:
+                Let's differentiate both sides of equation~\ref{eq:eq:rhodefinition} with respect to $x$:
+                $$\frac{\partial}{\partial x}\left(\rho^2\right)=\frac{\partial}{\partial x}\left(x^2 + y^2\right)$$
+                $$2\rho\frac{\partial \rho}{\partial x} = 2x + 0$$
+                $$\frac{\partial \rho}{\partial x} = \frac{x}{\rho} = \cos\phi$$
+                Thus:
+                \begin{equation}\label{eq:partialrhowrtx}
+                   \frac{\partial \rho}{\partial x} = \cos\phi
+                \end{equation}
+                Doing the same for $y$.
+                $$\frac{\partial}{\partial y}\left(\rho^2\right) = \frac{\partial}{\partial y}\left(x^2 + y^2\right)$$
+                $$2\rho\frac{\partial \rho}{\partial y} = 2y$$
+                $$\frac{\partial \rho}{\partial y} = \frac{y}{\rho} = \sin\phi$$
+                Thus:
+                \begin{equation}\label{eq:partialrhowrty}
+                    \frac{\partial \rho}{\partial y} = \sin\phi
+                \end{equation}
+                Let's now try to find $\frac{\partial \phi}{\partial x}$:
+                $$\frac{\partial \phi}{\partial x} = \frac{\partial}{\partial x}\left(tan^{-1}\left(\frac{y}{x}\right)\right)$$
+                \begin{align*}
+                \frac{\partial \phi}{\partial x} = & \frac{1}{\left(1 + \frac{y^2}{x^2}\right)}\frac{y}{x}\\
+                = & \frac{-y}{x^2+y^2} = \frac{-\rho\sin\phi}{\rho^2} = -\frac{\sin\phi}{\rho}
+                \end{align*}
+                Doing the same thing to find $\frac{\partial \phi}{\partial y}$:
+                $$\frac{\partial \phi}{\partial y} = \frac{1}{1 + \left(\frac{y^2}{x^2}\right)}\frac{1}{x} = 
+                \frac{x}{x^2+y^2}=\frac{\rho \cos\phi}{\rho^2} = \frac{\cos\phi}{\rho}$$
+                Thus:
+                \begin{equation}\label{eq:partialphiwrty}
+                   \frac{\partial \phi}{\partial y} = \frac{\cos\phi}{\rho}
+                \end{equation}
+                \begin{equation}\label{eq:partialphiwrtx}
+                    \frac{\partial \phi}{\partial x} = -\frac{\sin\phi}{\rho}
+                \end{equation}
+                Now we can get the values of $\frac{\partial}{\partial x}$ and $\frac{\partial}{\partial y}$ as:
+                $$\frac{\partial}{\partial x} = \cos\phi\frac{\partial}{\partial \phi} + 
+                    -\frac{\sin\phi}{\rho}\frac{\partial}{\partial \phi}
+                $$
+                $$\frac{\partial}{\partial y} = \sin\phi\frac{\partial}{\partial \phi} + 
+                    \frac{\cos\phi}{\rho}\frac{\partial}{\partial \phi}
+                $$
+                Now let's find out $\nabla$.
+                $$\nabla = \frac{\partial}{\partial x}\vec{a}_x + 
+                    \frac{\partial}{\partial y}\vec{a}_y +
+                    \frac{\partial}{\partial z}\vec{a}_z
+                $$
+                $$
+                    \nabla = \left(\cos\phi\frac{\partial}{\partial \rho} - \frac{\sin\phi}{\rho}\frac{\partial}{\partial \phi}\right)\left(\cos\phi\vec{a}_\rho - \sin\phi\vec{a}_\phi\right) +
+                    \left(\sin\phi\frac{\partial}{\partial \rho} + \frac{\cos\phi}{\rho}\frac{\partial}{\partial \phi}\right)\left(\sin\phi\vec{a}_\rho + \cos\phi\vec{a}_\phi\right) + \frac{\partial}{\partial z}\vec{a}_z
+                $$
+                \begin{align*}
+                    \nabla = & \cos^2\phi\vec{a}_\phi\frac{\partial}{\partial \rho} - \sin\phi\cos\phi\vec{a}_\phi\frac{\partial}{\partial \rho} - \frac{\sin\phi\cos\phi}{\rho}\frac{\partial}{\partial \phi} + \frac{sin^2\phi}{\rho}\frac{\partial}{\partial \phi} \frac{\partial}{\partial z}\vec{a}_z\\
+                    = & \sin^2\phi\vec{a}_\rho\frac{\partial}{\partial \rho} + \sin\phi\cos\phi\vec{a}_\phi\frac{\partial}{\partial \rho} + \frac{\sin\phi\cos\phi}{\rho}\vec{a}_\phi\frac{\partial}{\partial\phi} + \frac{\cos^2\phi}{\rho}\vec{a}_\phi\frac{\partial}{\partial \phi} \frac{\partial}{\partial z}\vec{a}_z
+                \end{align*}
+                Canceling out the opposite terms:
+                $$
+                    \nabla = \frac{\partial}{\partial \rho}\left(\sin^2\phi + \cos^2\phi\right)\vec{a}_\rho + \frac{\partial}{\partial \phi}\left(\frac{\sin^2\phi}{\rho} + \frac{\cos^2\phi}{\rho}\right)\vec{a}_\phi + \frac{\partial}{\partial z}\vec{a}_z
+                $$
+                \begin{equation}
+                    \nabla = \frac{\partial}{\partial \rho}\vec{a}_\rho + \frac{1}{\rho}\frac{\partial}{\partial\phi}\vec{a}_\phi + \frac{\partial}{\partial z}\vec{a}_z
+                \end{equation}
