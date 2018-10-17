@@ -1,0 +1,87 @@
+% sets up the perspective from which we are looking at the picture {theta}{phi}
+% {theta} defines the rotion by x axis while {phi} defines the rotation by z axis
+\tdplotsetmaincoords{60}{120}
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        [scale=4,
+        tdplot_main_coords,
+        axis/.style={->,black,thick},
+        vector/.style={-stealth,very thick},
+        vector guide/.style={dashed,red,thick}]
+
+        \coordinate (O) at (0, 0, 0);
+
+        % this should serve as our unit vector
+        \def\unit{0.3} 
+
+        \def\ax{0.6}
+        \def\ay{0.4}
+        \def\az{0.8}
+
+        \def\bx{0.7}
+        \def\by{0.7}
+        \def\bz{1.2}
+
+        \pgfmathsetmacro{\dx}{\bx-\ax}
+        \pgfmathsetmacro{\dy}{\by-\ay}
+        \pgfmathsetmacro{\dz}{\bz-\az}
+
+        \pgfmathsetmacro{\dxd}{\dx/2}
+        \pgfmathsetmacro{\dyd}{\dy/2}
+        \pgfmathsetmacro{\dzd}{\dz/2}
+
+        \pgfmathsetmacro{\rhored}{sqrt(\ax^2+\ay^2)}
+        \pgfmathsetmacro{\rhoblue}{sqrt(\bx^2+\by^2)}
+
+        \pgfmathsetmacro{\drho}{sqrt(\dxd^2+\dyd^2)}
+
+        \pgfmathsetmacro{\lengthratio}{(sqrt(\bx^2+\by^2))/(sqrt(\ax^2+\ay^2))}
+        \pgfmathsetmacro{\lengthratioinverse}{(sqrt(\ax^2+\ay^2))/(sqrt(\bx^2+\by^2))}
+
+        \pgfmathsetmacro{\phiii}{atan(\ay/\ax)}
+        \pgfmathsetmacro{\phiiis}{atan(\by/\bx)}
+
+        \pgfmathsetmacro{\totallengthred}{sqrt(\ax^2+\ay^2+\az^2)}
+        \pgfmathsetmacro{\totallengthblue}{sqrt(\bx^2+\by^2+\bz^2)}
+        \pgfmathsetmacro{\thetaaa}{acos(\az/\totallengthred)}
+        \pgfmathsetmacro{\thetaaas}{acos(\bz/\totallengthblue)}
+
+        % drawing axes
+        \draw[axis] (0, 0, 0) -- (1, 0, 0) node[anchor=north east]{$x$};
+        \draw[axis] (0, 0, 0) -- (0, 1, 0) node[anchor=north west]{$y$};
+        \draw[axis] (0, 0, 0) -- (0, 0, 1.5) node[anchor=south]{$z$};
+
+        % drawing the main vector B
+        \fill[red] (\ax, \ay, \az) circle[radius=0.2pt] node[right]{};
+        \draw[vector, red] (0, 0, 0) -- (\ax, \ay, \az);
+
+        \fill[blue] (\bx, \by, \bz) circle[radius=0.2pt] node[right]{};
+        \draw[vector, blue] (0, 0, 0) -- (\bx, \by, \bz);
+
+        % draw their projections on the xy plane
+        \draw[dashed, blue] (\bx, \by, \bz) -- (\bx, \by, 0);
+        \draw[dashed, red] (\ax, \ay, \az) -- (\ax, \ay, 0);
+
+        % draw rho circles
+        \tdplotdrawarc[dashed, red]{(0, 0, 0)}{\rhored}{0}{90}{}{};
+        \tdplotdrawarc[dashed, blue]{(0, 0, 0)}{\rhoblue}{0}{90}{}{};
+
+        \tdplotsetthetaplanecoords{\phiii}
+        \tdplotdrawarc[tdplot_rotated_coords, cyan]{(0,0,0)}{\totallengthred}{\thetaaa}{\thetaaas}{anchor=south west}{}
+        \tdplotdrawarc[tdplot_rotated_coords, cyan]{(0,0,0)}{\totallengthblue}{\thetaaa}{\thetaaas}{anchor=south west}{}
+        \tdplotsetthetaplanecoords{\phiiis}
+        \tdplotdrawarc[tdplot_rotated_coords, cyan]{(0,0,0)}{\totallengthred}{\thetaaa}{\thetaaas}{anchor=south west}{}
+        \tdplotdrawarc[tdplot_rotated_coords, cyan]{(0,0,0)}{\totallengthblue}{\thetaaa}{\thetaaas}{anchor=south west}{}
+
+        \tdplotsetrotatedcoords{\thetaaa}{-\thetaaa}{0}
+        \tdplotdrawarc[tdplot_rotated_coords, cyan]{(0,0,0)}{\totallengthred}{\phiii}{\phiiis}{anchor=south west}{}
+        \draw[tdplot_rotated_coords] (0,0,0) -- (1,0,0) node[right]{$x'$};
+        \draw[tdplot_rotated_coords] (0,0,0) -- (0,1,0) node[right]{$y'$};
+        \draw[tdplot_rotated_coords] (0,0,0) -- (0,0,1) node[right]{$z'$};
+
+
+    \end{tikzpicture}
+    \caption{Two closeby points in SCS}
+    \label{fig:differentialCCS}
+\end{figure}

@@ -530,5 +530,26 @@
     \section{Differential Lengths, Areas and Volumes}
         \subsection{RCS}
             \input{chapters/chapter-1/diagrams/differentialRCS}
+            $$\vec{dl} = dx\vec{a}_x + dy\vec{a}_y + dz\vec{a}_z$$
+            $$d\vec{S_x} = dydz\vec{a}_x$$
+            $$d\vec{S_y} = dxdz\vec{a}_y$$
+            $$d\vec{S_z} = dxdy\vec{a}_z$$
+            $$dV = dxdydz$$
         \subsection{CCS}
             \input{chapters/chapter-1/diagrams/differentialCCS}
+            $$\vec{dl} = d\rho\vec{a}_\rho + d\phi\vec{a}_\phi + dz\vec{a}_z$$
+            $$d\vec{S}_\rho = d\phi\rho dz\vec{a}_\rho$$
+            $$d\vec{S}_\phi = d\phi d\rho\vec{a}_\phi$$
+            $$d\vec{S}_z = \rho d\phi dz$$
+            $$dV = \rho d\phi dz$$
+        \subsection{SCS}
+            \input{chapters/chapter-1/diagrams/differentialSCS}
+            $$d\vec{l}=dr\vec{a}_r + rd\theta\vec{a}_\phi + r\sin\theta d\phi\vec{a}_\phi$$
+            $$d\vec{S}_r = r^2\sin\theta d\phi d\theta \vec{a}_r$$
+            $$d\vec{S}_\theta = r\sin\theta dr\vec{a}_\theta$$
+            $$d\vec{S}_\phi = rdrd\theta\vec{a}_\phi$$
+            $$dV = r^2\sin\theta drd\theta d\phi$$
+            Derivation of volume of a sphere:
+            $$\int\int\int dV$$
+            $$V = \int_{0}^{2\pi}\int_{0}^{\pi}\int_{0}^{R}r^2\sin\theta drd\theta d\phi$$
+            $$V = \frac{4\pi{r}^3}{3}$$
