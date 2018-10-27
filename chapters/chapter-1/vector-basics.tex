@@ -562,7 +562,7 @@
             $$\int\int\int dV$$
             $$V = \int_{0}^{2\pi}\int_{0}^{\pi}\int_{0}^{R}r^2\sin\theta drd\theta d\phi$$
             $$V = \frac{4\pi{r}^3}{3}$$
-    \section{The Nebla Operator}
+    \section{The Nabla Operator}
         % TODO: nabla operator is not as simple as it may sound, this vector definition of nabla looks a little troublesome to me so maybe a expalnation is needed here, will see
         The nabla operator ($\nabla$) will be used at various places to describe different operations. Therefore it will be wise to introduce it at this point and define the various operations that it can represent.
         $$\nabla = \frac{\partial}{\partial x}\vec{a}_x + \frac{\partial}{\partial y}\vec{a}_y + \frac{\partial}{\partial z}\vec{a}_z$$
@@ -613,7 +613,7 @@
         \subsection{Nabla in CCS}
             Nabla in cylindrical coordinates is defined as:
             $$\nabla = \frac{\partial}{\partial \rho}\vec{a}_\rho + \frac{1}{\rho}\frac{\partial}{\partial \phi} + \frac{\partial}{\partial z}\vec{a}_z$$
-            \subsection{Proof}
+            \subsection{Proof (The Hard Way)}
                 $$x = \rho\cos\phi \quad f(\rho, \phi)$$
                 $$y = \rho\sin\phi \quad f(\rho, \phi)$$
                 \begin{equation}\label{eq:rhodefinition}
@@ -686,3 +686,23 @@
                 \begin{equation}
                     \nabla = \frac{\partial}{\partial \rho}\vec{a}_\rho + \frac{1}{\rho}\frac{\partial}{\partial\phi}\vec{a}_\phi + \frac{\partial}{\partial z}\vec{a}_z
                 \end{equation}
+            \subsection{Proof (The Easy Way)}
+                % TODO: Get this proof reviewed ASAP
+                There is a very easy way to derive $\nabla$ in CCS. 
+                Suppose a vector field $\vec{U}$:
+                $$\vec{U} = \vec{U}(\rho, \phi, z)$$
+                \begin{equation}\label{eq:nablaccseasy1}
+                    dU = \left(\frac{\partial U}{\partial \rho}d\rho + \frac{\partial U}{\partial\phi}d\phi + \frac{\partial U}{\partial z}dz\right)
+                \end{equation}
+                $$\vec{dU} = \left(\nabla U\right)\cdot\vec{dl}$$
+                $$\vec{dU} = \left((\nabla U)_\rho\vec{a}_\rho + (\nabla U)_\phi\vec{a}_\phi + (\nabla U)_z\vec{a}_z\right)\cdot\left(d\rho\vec{a}_\rho + \rho d\phi\vec{a}_\phi + dz\vec{a}_z\right)$$
+                \begin{equation}\label{eq:nablaccseasy2}
+                    (\nabla U)_\rho d\rho + (\nabla U_\phi)\rho d\phi + (\nabla U_z)dz
+                \end{equation}
+                Comparing equation~\ref{eq:nablaccseasy1} with~\ref{eq:nablaccseasy2}:
+                $$\nabla U_\rho = \frac{\partial U}{\partial\rho}$$
+                $$\nabla U_\phi = \frac{1}{\rho}\frac{\partial U}{\partial \phi}$$
+                $$\nabla U_z = \frac{\partial U}{\partial z}$$
+        \section{Nabla in SCS}
+            $\nabla$ in SCS is given as:
+            $$\nabla = \frac{\partial}{\partial r}\vec{a}_r + \frac{1}{r}\frac{\partial}{\partial \theta}\vec{a}_\theta + \frac{1}{r\sin\theta}\frac{\partial}{\partial \phi}\vec{a}_\phi$$
