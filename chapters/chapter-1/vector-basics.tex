@@ -706,3 +706,239 @@
         \section{Nabla in SCS}
             $\nabla$ in SCS is given as:
             $$\nabla = \frac{\partial}{\partial r}\vec{a}_r + \frac{1}{r}\frac{\partial}{\partial \theta}\vec{a}_\theta + \frac{1}{r\sin\theta}\frac{\partial}{\partial \phi}\vec{a}_\phi$$
+            \subsection{Proof (The Hard Way)}
+                We know that:
+                $$\nabla = \frac{\partial}{\partial x}\vec{a}_x + \frac{\partial}{\partial y}\vec{a}_y + \frac{\partial}{\partial z}\vec{a}_z$$
+                Lets write the unit vectors in RCS in terms of their counterparts in spherical coordinates:
+                \begin{align*}
+                    \vec{a}_x = & \sin\theta\cos\phi\vec{a}_\rho + \cos\theta\cos\phi\vec{a}_\theta - \sin\phi\vec{a}_\phi \\ 
+                    \vec{a}_y = & \sin\theta\sin\phi\vec{a}_\rho + \cos\theta\sin\phi\vec{a}_\theta + \cos\phi\vec{a}_\phi \\
+                    \vec{a}_z = & \cos\theta\vec{a}_\rho - \sin\theta\vec{a}_\theta
+                \end{align*}
+                Let's write $(x, y, z)$ in terms of $(r, \theta, \phi)$ and vice versa:
+                \begin{align*}
+                    x = & r\sin\theta\cos\phi \\
+                    y = & r\sin\theta\sin\phi \\
+                    z = & r\cos\theta
+                \end{align*}
+                \begin{align*}
+                    r = & \sqrt{x^2 + y^2 + z^2} \\
+                    \theta = & \cos^{-1}\left(\frac{z}{x^2 + y^2 + z^2}\right) \\
+                    \phi = & \tan^{-1}\left(\frac{y}{x}\right)
+                \end{align*}
+                We can see by observing these equations that:
+                \begin{align*}
+                    x = & x(r, \theta, \phi) \\
+                    y = & y(r, \theta, \phi) \\
+                    z = & z(r, \theta)
+                \end{align*}
+                Developing the partial derivatives of $(x, y, z)$:
+                \begin{align}
+                    \frac{\partial}{\partial x} = & \frac{\partial}{\partial r}\frac{\partial r}{\partial x}
+                                                  + \frac{\partial}{\partial \theta}\frac{\partial \theta}{\partial x}
+                                                  + \frac{\partial}{\partial \phi}\frac{\partial \phi}{\partial x} \\
+                    \frac{\partial}{\partial y} = & \frac{\partial}{\partial r}\frac{\partial r}{\partial y} 
+                                                  + \frac{\partial}{\partial \theta}\frac{\partial \theta}{\partial y}
+                                                  + \frac{\partial}{\partial \phi}\frac{\partial \phi}{\partial y} \\
+                    \frac{\partial}{\partial z} = & \frac{\partial}{\partial r}\frac{\partial r}{\partial z} 
+                                                    \frac{\partial}{\partial \theta}\frac{\partial \theta}{\partial z}
+                \end{align}
+                Ultimately it is our goal to figure out these partial derivates. But to do that, we need to compute some other things. So let's do that one by one.
+                First of all we calculate the partial derivates of $r$ with respect to $x$, $y$ and $z$:
+                \begin{align*}
+                    \frac{\partial r}{\partial x} = & \frac{1}{2}\left(x^2 + y^2 + z^2\right)^{-\frac{1}{2}}2x = \frac{x}{\sqrt{x^2 + y^2 + z^2}} = \sin\theta\cos\phi \\
+                    \frac{\partial r}{\partial y} = & \frac{1}{2}\left(x^2 + y^2 + z^2\right)^{-\frac{1}{2}}2y = \frac{y}{\sqrt{x^2 + y^2 + z^2}} = \sin\theta\sin\phi \\
+                    \frac{\partial r}{\partial z} = & \frac{1}{2}\left(x^2 + y^2 + z^2\right)^{-\frac{1}{2}}2z = \frac{y}{\sqrt{x^2 + y^2 + z^2}} = \cos\theta 
+                \end{align*}
+                Let us now calculate the partial derivates of $\theta$ with respect to $x$, $y$ and $z$:
+                \begin{align*}
+                     \frac{\partial\theta}{\partial x} = & \frac{-z}{\sqrt{1-\frac{z^2}{x^2 + y^2 + z^2}}}\left(-\frac{1}{2}\left(x^2 + y^2 + z^2\right)^{-\frac{3}{2}}2x\right) \\
+                     = & \frac{xz\left(x^2+y^2+z^2\right)^{-\frac{1}{2}}}{\sqrt{1-\frac{z^2}{x^2 + y^2 + z^2}}}\left(x^2 + y^2 + z^2\right)^{-\frac{3}{2}} \\
+                     = & \frac{xz}{\sqrt{x^2 + y^2}}\left(x^2 + y^2 + z^2\right)^{-1-\frac{1}{2}} \\
+                     = & \left(\frac{x}{\sqrt{x^2 + y^2}}\right)\left(\frac{z}{\sqrt{x^2 + y^2 + z^2}}\right)\left(\frac{1}{\sqrt{x^2 + y^2 + z^2}}\right) \\
+                     = & \frac{\cos\phi\cos\theta}{r}
+                \end{align*}
+                \begin{align*}
+                     \frac{\partial\theta}{\partial y} = & \frac{-z}{\sqrt{1-\frac{z^2}{x^2 + y^2 + z^2}}}\left(-\frac{1}{2}\left(x^2 + y^2 + z^2\right)^{-\frac{3}{2}}2y\right) \\
+                     = & \frac{yz\left(x^2+y^2+z^2\right)^{-\frac{1}{2}}}{\sqrt{1-\frac{z^2}{x^2 + y^2 + z^2}}}\left(x^2 + y^2 + z^2\right)^{-\frac{3}{2}} \\
+                     = & \frac{yz}{\sqrt{x^2 + y^2}}\left(x^2 + y^2 + z^2\right)^{-1-\frac{1}{2}} \\
+                     = & \left(\frac{y}{\sqrt{x^2 + y^2}}\right)\left(\frac{z}{\sqrt{x^2 + y^2 + z^2}}\right)\left(\frac{1}{\sqrt{x^2 + y^2 + z^2}}\right) \\
+                     = & \frac{\sin\phi\cos\theta}{r}
+                \end{align*}
+                \begin{align*}
+                    \frac{\partial\theta}{\partial z} = & \frac{-\left(x^2 + y^2 + z^2\right)^{1/2}}{\sqrt{1-\frac{z^2}{x^2 + y^2 + z^2}}}\frac{\partial}{\partial z}\left(\frac{z}{\sqrt{x^2 + y^2 + z^2}}\right) \\
+                    = & \frac{-\left(x^2 + y^2 + z^2\right)^{1/2}}{\sqrt{x^2 + y^2}}\frac{\partial}{\partial z}\left(\frac{z}{\sqrt{x^2 + y^2 + z^2}}\right) \\
+                \end{align*}
+                Let's separately calculate the $\frac{\partial}{\partial z}$ term:
+                \begin{align*}
+                    \frac{\partial}{\partial z}\left(\frac{z}{x^2 + y^2 + z^2}\right) = & \frac{
+                        \left(x^2 + y^2 + z^2\right)(1) - (z)(1/2)\left(x^2 + y^2 + z^2\right)^{-1/2}(2z)
+                    }{x^2 + y^2 + z^2}\\
+                    = & \frac{\sqrt{x^2 + y^2 + z^2} - \frac{z^2}{\sqrt{x^2 + y^2 + z^2}}}{(x^2 + y^2 + z^2)}
+                \end{align*}
+                Now putting it back in the $\frac{\partial\theta}{\partial z}$ term:
+                \begin{align*}
+                    \frac{\partial\theta}{\partial z} = & (-1)\left(\frac{\sqrt{x^2 + y^2 + z^2} - \frac{z^2}{\sqrt{x^2 + y^2 + z^2}}}{\sqrt{x^2 + y^2 + z^2}}\right)\left(\frac{1}{\sqrt{x^2 + y^2}}\right) \\
+                    = & (-1)\left(1-\frac{z^2}{\sqrt{x^2 + y^2 + z^2}}\right)\left(\frac{1}{\sqrt{x^2 + y^2}}\right) \\
+                    = & (-1)\left(\frac{x^2 + y^2}{\sqrt{x^2 + y^2}}\right)\left(\frac{1}{x^2 + y^2 + z^2}\right) \\
+                    = & (-1)\left(\frac{1}{\sqrt{x^2 + y^2 + z^2}}\right)\left(\frac{\sqrt{x^2 + y^2}}{\sqrt{x^2 + y^2 + z^2}}\right)\\
+                    = & -\frac{1}{r}\sin\theta
+                \end{align*}
+                Thus:
+                \begin{align}
+                    \frac{\partial\theta}{\partial x} = & \frac{\cos\phi\cos\theta}{r} \\
+                    \frac{\partial\theta}{\partial y} = & \frac{\sin\phi\cos\theta}{r} \\
+                    \frac{\partial\theta}{\partial z} = & -\frac{1}{r}\sin\theta
+                \end{align}
+                Putting these results back in those partial derivative equations we get:
+                \begin{align}
+                    \frac{\partial}{\partial x} = & \frac{\partial}{\partial r}\left(\sin\theta\cos\phi\right) 
+                                                + \frac{\partial}{\partial \theta}\left(\frac{\cos\theta\cos\phi}{r}\right)
+                                                + \frac{\partial}{\partial \phi}\left(\frac{-\sin\phi}{r\sin\theta}\right) \\
+                    \frac{\partial}{\partial y} = & \frac{\partial}{\partial r}\left(\sin\theta\sin\phi\right)
+                                                + \frac{\partial}{\partial \theta}\left(\frac{\sin\phi\cos\theta}{r}\right) 
+                                                + \frac{\partial}{\partial \phi}\left(\frac{\cos\phi}{r\sin\theta}\right) \\
+                    \frac{\partial}{\partial z} = & \frac{\partial}{\partial r}\left(\cos\theta\right) + \frac{\partial}{\partial \theta}\left(-\frac{\sin\theta}{r}\right)
+                \end{align}
+                Right now we have all we need to do for the final calculation. Nabla in RCS is:
+                $$\nabla = \frac{\partial}{\partial x}\vec{a}_x + \frac{\partial}{\partial y}\vec{a}_y + \frac{\partial}{\partial z}\vec{a}_z$$
+                We can write this as:
+                $$\nabla = \nabla_x + \nabla_y + \nabla_z$$
+                Where:
+                \begin{align*}
+                    \nabla_x = & \frac{\partial}{\partial x}\vec{a}_x \\
+                    \nabla_y = & \frac{\partial}{\partial y}\vec{a}_y \\ 
+                    \nabla_z = & \frac{\partial}{\partial z}\vec{a}_z \\
+                \end{align*}
+                \begin{align*}
+                    \nabla_x = & \left(\frac{\partial}{\partial r}\left(\sin\theta\cos\phi\right) 
+                                + \frac{\partial}{\partial \theta}\left(\frac{\cos\theta\cos\phi}{r}\right)
+                                + \frac{\partial}{\partial \phi}\left(\frac{-\sin\phi}{r\sin\theta}\right)\right)
+                                \left(\sin\theta\cos\phi\vec{a}_\rho + \cos\theta\cos\phi\vec{a}_\theta - \sin\phi\vec{a}_\phi\right) \\
+                            = & \left(\frac{\partial}{\partial r}\sin\theta\cos\phi\right)
+                                \left(\sin\theta\cos\phi\vec{a}_\rho + \cos\theta\cos\phi\vec{a}_\theta - \sin\phi\vec{a}_\phi\right) \\
+                            + & \left(\frac{\partial}{\partial \theta}\frac{\cos\theta\cos\phi}{r}\right)
+                                \left(\sin\theta\cos\phi\vec{a}_\rho + \cos\theta\cos\phi\vec{a}_\theta - \sin\phi\vec{a}_\phi\right) \\
+                            + & \left(\frac{\partial}{\partial \phi}\frac{-\sin\phi}{r\sin\theta}\right)
+                                \left(\sin\theta\cos\phi\vec{a}_\rho + \cos\theta\cos\phi\vec{a}_\theta - \sin\phi\vec{a}_\phi\right) \\
+                            = & \left(\frac{\partial}{\partial r}\right)\left(
+                                    \sin^2\theta\cos^2\phi\vec{a}_\rho + 
+                                    \sin\theta\cos\theta\cos^2\phi\vec{a}_\theta -
+                                    \sin\theta\sin\phi\cos\phi\vec{a}_\phi
+                                \right) \\
+                            + & \left(\frac{\partial}{\partial\theta}\right)\left(
+                                    \frac{\sin\theta\cos\theta\cos^2\phi}{r}\vec{a}_\rho + 
+                                    \frac{\cos^2\theta\cos^2\phi}{r}\vec{a}_\theta -
+                                    \frac{\sin\phi\cos\phi\cos\theta}{r}\vec{a}_\phi
+                                \right)\\
+                            + & \left(\frac{\partial}{\partial\phi}\right)\left(
+                                    -\frac{\sin\phi\cos\phi}{r}
+                                    -\frac{\sin\phi\cos\phi\cos\theta}{r\sin\theta}\vec{a}_\theta 
+                                    +\frac{\sin^2{\phi}}{r\sin\theta}\vec{a}_\phi
+                                \right)
+                \end{align*}
+                \begin{align*}
+                    \nabla_y = & \left(\frac{\partial}{\partial r}\left(\sin\theta\sin\phi\right) 
+                                + \frac{\partial}{\partial \theta}\left(\frac{\sin\phi\cos\theta}{r}\right)
+                                + \frac{\partial}{\partial \phi}\left(\frac{\cos\phi}{r\sin\theta}\right)\right)
+                                \left(\sin\theta\cos\phi\vec{a}_\rho + \cos\theta\cos\phi\vec{a}_\theta - \sin\phi\vec{a}_\phi\right) \\
+                            = & \left(\frac{\partial}{\partial r}\sin\theta\sin\phi\right)\left(
+                                \sin\theta\cos\phi\vec{a}_\rho + \cos\theta\cos\phi\vec{a}_\theta - \sin\phi\vec{a}_\phi
+                            \right) \\
+                            + & \left(\frac{\partial}{\partial \theta}\frac{\sin\phi\cos\theta}{r}\right)\left(
+                                \sin\theta\cos\phi\vec{a}_\rho + \cos\theta\cos\phi\vec{a}_\theta - \sin\phi\vec{a}_\phi
+                            \right) \\
+                            + & \left(\frac{\partial}{\partial \phi}\frac{\cos\phi}{r\sin\theta}\right)\left(
+                                \sin\theta\cos\phi\vec{a}_\rho + \cos\theta\cos\phi\vec{a}_\theta - \sin\phi\vec{a}_\phi
+                            \right) \\
+                            = & \left(\frac{\partial}{\partial r}\right)\left(
+                                    \sin^2\theta\sin^2\phi\vec{a}_\rho +
+                                    \sin\theta\cos\theta\sin^2\phi\vec{a}_\theta +
+                                    \sin\theta\cos\phi\sin\phi\vec{a}_\phi
+                                \right) \\
+                            + & \left(\frac{\partial}{\partial \theta}\right)\left(
+                                    \frac{\sin^2\phi\sin\theta\cos\theta}{r}\vec{a}_\rho + 
+                                    \frac{\sin^2\phi\cos^2\theta}{r}\vec{a}_\theta + 
+                                    \frac{\sin\phi\cos\phi\cos\theta}{r}\vec{a}_\phi 
+                                \right)\\
+                            + & \left(\frac{\partial}{\partial \phi}\right)\left(
+                                    \frac{\sin\phi\cos\phi}{r}\vec{a}_\rho + 
+                                    \frac{\sin\phi\cos\phi\cos\theta}{r\sin\theta}\vec{a}_\theta + 
+                                    \frac{\cos^2\phi}{r\sin\theta}\vec{a}_\phi
+                                \right)
+                \end{align*}
+                \begin{align*}
+                    \nabla_z = & \left(\frac{\partial}{\partial r}\cos\theta + \frac{\partial}{\partial\theta}\frac{-\sin\theta}{r}\right)
+                               \left(\cos\theta\vec{a}_\rho - \sin\theta\vec{a}_\theta\right) \\
+                             = & \left(\frac{\partial}{\partial r}\right)\left(\cos^2\theta\vec{a}_\rho - \sin\theta\cos\theta\vec{a}_\theta\right)\\
+                             + & \left(\frac{\partial}{\partial \theta}\right)\left(\frac{-\sin\theta\cos\theta}{r}\vec{a}_\rho + \frac{\sin^2\theta}{r}\vec{a}_\theta\right)
+                \end{align*}
+                \begin{align*}
+                    \nabla = & \frac{\partial}{\partial r}\left(
+                                    \vec{a}_\rho\left(
+                                        \sin^2\theta\cos^2\phi + 
+                                        \sin^2\theta\sin^2\phi +
+                                        \cos^2\theta     
+                                    \right)
+                                \right) \\
+                           + & \frac{\partial}{\partial r}\left(
+                                    \vec{a}_\theta\left(
+                                        \sin\theta\cos\theta\cos^2\phi + 
+                                        \sin\theta\cos\theta\sin^2\phi - 
+                                        \sin\theta\cos\theta     
+                                    \right)
+                                \right) \\
+                           + & \frac{\partial}{\partial r}\left(
+                                    \vec{a}_\phi\left(
+                                        -\sin\theta\sin\phi\cos\phi
+                                        +\sin\theta\cos\phi\sin\phi     
+                                    \right)
+                                \right) \\
+                           + & \frac{\partial}{\partial\theta}\left(
+                                    \vec{a}_\rho\left(
+                                        \frac{\sin\theta\cos\theta\cos^2\phi}{r} + 
+                                        \frac{\sin^2\phi\sin\theta\cos\theta}{r} -
+                                        \frac{\sin\theta\cos\theta}{r}
+                                    \right) 
+                                \right) \\
+                           + & \frac{\partial}{\partial\theta}\left(
+                                    \vec{a}_\theta\left(
+                                        \frac{\cos^2\theta\cos^2\phi}{r} + 
+                                        \frac{\sin^2\theta\cos^2\theta}{r} +
+                                        \frac{\sin^2\theta}{r}
+                                    \right) 
+                                \right) \\
+                           + & \frac{\partial}{\partial\theta}\left(
+                                    \vec{a}_\phi\left(
+                                        \frac{\sin^2\theta}{r\sin\theta} + 
+                                        \frac{\cos^2\phi}{r\sin\theta}
+                                    \right) 
+                                \right) \\
+                           + & \frac{\partial}{\partial\phi}\left(
+                                    \vec{a}_r\left(
+                                        -\frac{\sin\phi\cos\phi}{r}
+                                        +\frac{\sin\phi\cos\phi}{r}
+                                    \right)
+                                \right) \\
+                           + & \frac{\partial}{\partial\phi}\left(
+                                    \vec{a}_\theta\left(
+                                        -\frac{\sin\phi\cos\phi\cos\theta}{r\sin\theta}
+                                        +\frac{\cos\theta\cos\phi}{r\sin\theta}
+                                    \right)
+                                \right) \\
+                           + & \frac{\partial}{\partial\phi}\left(
+                                    \vec{a}_\phi\left(
+                                        \frac{\sin^2\phi}{r\sin\theta} + 
+                                        \frac{\cos^2\phi}{r\sin\theta}
+                                    \right)
+                                \right) \\
+                \end{align*}
+                Cancelling the terms:
+                \begin{equation*}
+                    \nabla = \frac{\partial}{\partial r}\vec{a}_\rho + \frac{1}{r}\frac{\partial}{\partial \theta}\vec{a}_\theta + \frac{1}{r\sin\theta}\frac{\partial}{\partial\phi}\vec{a}_\phi
+                \end{equation*}
+                \begin{center}
+                    \begin{huge}
+                        Hurrray!
+                    \end{huge}
+                \end{center}
